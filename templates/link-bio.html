@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@nomedousuario | Link in Bio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0F172A;
+      --bg-purple: #581C87;
+      --purple: #7C3AED;
+      --pink: #EC4899;
+      --white: #FFFFFF;
+      --gray-light: #CBD5E1;
+      --gray-muted: #94A3B8;
+      --green-whatsapp: #25D366;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: var(--bg-dark);
+      color: var(--white);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Animated gradient background ── */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #1E1046 30%, var(--bg-purple) 60%, #2D1065 80%, var(--bg-dark) 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── Decorative dots / particles (CSS only) ── */
+    .bg-particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-particles::before,
+    .bg-particles::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.08;
+    }
+
+    .bg-particles::before {
+      width: 300px;
+      height: 300px;
+      background: var(--purple);
+      top: 10%;
+      left: -80px;
+      filter: blur(80px);
+      animation: floatParticle 20s ease-in-out infinite;
+    }
+
+    .bg-particles::after {
+      width: 250px;
+      height: 250px;
+      background: var(--pink);
+      bottom: 15%;
+      right: -60px;
+      filter: blur(70px);
+      animation: floatParticle 18s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      33%      { transform: translateY(-40px) translateX(20px); }
+      66%      { transform: translateY(20px) translateX(-15px); }
+    }
+
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.15);
+      pointer-events: none;
+    }
+
+    .dot:nth-child(1) { width: 6px; height: 6px; top: 8%;  left: 15%; animation: dotFloat 12s ease-in-out infinite; }
+    .dot:nth-child(2) { width: 4px; height: 4px; top: 22%; right: 10%; animation: dotFloat 10s ease-in-out infinite 1s; background: rgba(236,72,153,0.15); }
+    .dot:nth-child(3) { width: 8px; height: 8px; top: 45%; left: 8%;  animation: dotFloat 14s ease-in-out infinite 2s; }
+    .dot:nth-child(4) { width: 5px; height: 5px; top: 60%; right: 18%; animation: dotFloat 11s ease-in-out infinite 0.5s; background: rgba(236,72,153,0.12); }
+    .dot:nth-child(5) { width: 3px; height: 3px; top: 75%; left: 25%; animation: dotFloat 13s ease-in-out infinite 3s; }
+    .dot:nth-child(6) { width: 7px; height: 7px; top: 88%; right: 12%; animation: dotFloat 15s ease-in-out infinite 1.5s; background: rgba(124,58,237,0.12); }
+
+    @keyframes dotFloat {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50%      { transform: translateY(-20px); opacity: 1; }
+    }
+
+    /* ── Demo banner ── */
+    .demo-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--purple);
+      padding: 10px 16px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.4;
+      box-shadow: 0 2px 20px rgba(124, 58, 237, 0.4);
+    }
+
+    .demo-banner a {
+      color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .demo-banner a:hover {
+      opacity: 0.85;
+    }
+
+    /* ── Main container ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* ── Profile photo ── */
+    .profile-photo {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease forwards;
+    }
+
+    .profile-photo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6D28D9, #A855F7, #EC4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--bg-dark);
+    }
+
+    .profile-photo-inner svg {
+      width: 40px;
+      height: 40px;
+      stroke: rgba(255,255,255,0.7);
+    }
+
+    /* ── Name ── */
+    .profile-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 0.1s forwards;
+    }
+
+    /* ── Bio ── */
+    .profile-bio {
+      font-size: 14px;
+      color: var(--gray-light);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 340px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 0.2s forwards;
+    }
+
+    /* ── Social icons row ── */
+    .social-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 0.3s forwards;
+    }
+
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background: rgba(124, 58, 237, 0.3);
+      border-color: rgba(124, 58, 237, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+    }
+
+    .social-icon:hover svg {
+      stroke: var(--pink);
+    }
+
+    /* ── Link buttons ── */
+    .links-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .link-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .link-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(124, 58, 237, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.2);
+    }
+
+    .link-btn.animate-in {
+      animation: fadeSlideUp 0.5s ease forwards;
+    }
+
+    .link-btn-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 12px;
+      background: rgba(124, 58, 237, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .link-btn:hover .link-btn-icon {
+      background: rgba(124, 58, 237, 0.4);
+    }
+
+    .link-btn-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--purple);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s ease;
+    }
+
+    .link-btn:hover .link-btn-icon svg {
+      stroke: var(--white);
+    }
+
+    .link-btn-text {
+      flex: 1;
+    }
+
+    .link-btn-arrow {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gray-muted);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all 0.3s ease;
+      margin-left: 8px;
+    }
+
+    .link-btn:hover .link-btn-arrow {
+      stroke: var(--white);
+      transform: translateX(3px);
+    }
+
+    /* Tag "NOVO" */
+    .tag-new {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-left: 10px;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    /* WhatsApp special button */
+    .link-btn.whatsapp {
+      border-color: rgba(37, 211, 102, 0.3);
+    }
+
+    .link-btn.whatsapp .link-btn-icon {
+      background: rgba(37, 211, 102, 0.2);
+    }
+
+    .link-btn.whatsapp .link-btn-icon svg {
+      stroke: var(--green-whatsapp);
+    }
+
+    .link-btn.whatsapp:hover {
+      border-color: rgba(37, 211, 102, 0.5);
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.2);
+    }
+
+    .link-btn.whatsapp:hover .link-btn-icon {
+      background: rgba(37, 211, 102, 0.4);
+    }
+
+    .link-btn.whatsapp:hover .link-btn-icon svg {
+      stroke: var(--white);
+    }
+
+    /* ── Highlight / promo card ── */
+    .highlight-card {
+      width: 100%;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      text-align: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(20px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .highlight-card.animate-in {
+      animation: fadeSlideUp 0.5s ease forwards;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.4);
+    }
+
+    .highlight-card-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .highlight-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .highlight-card-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .highlight-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding: 10px 24px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .highlight-card:hover .highlight-card-cta {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .highlight-card-cta svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: auto;
+      padding-top: 40px;
+      padding-bottom: 20px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 1.2s forwards;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: var(--gray-muted);
+    }
+
+    .footer a {
+      color: var(--purple);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: var(--pink);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive fine-tuning ── */
+    @media (max-width: 380px) {
+      .container {
+        padding: 75px 16px 32px;
+      }
+
+      .profile-name {
+        font-size: 20px;
+      }
+
+      .profile-bio {
+        font-size: 13px;
+      }
+
+      .link-btn {
+        padding: 14px 16px;
+        font-size: 14px;
+      }
+
+      .link-btn-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        margin-right: 12px;
+      }
+
+      .highlight-card-title {
+        font-size: 18px;
+      }
+
+      .social-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .social-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    @media (min-width: 481px) {
+      .container {
+        padding-top: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated gradient background -->
+  <div class="bg-gradient"></div>
+
+  <!-- Decorative particles -->
+  <div class="bg-particles">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- Demo banner -->
+  <div class="demo-banner">
+    Este é um template demo da RB Tecnologia &nbsp;|&nbsp; Quer seu Link in Bio? <a href="https://wa.me/5511910599011" target="_blank" rel="noopener">Chama no WhatsApp</a>
+  </div>
+
+  <!-- Main container -->
+  <div class="container">
+
+    <!-- Profile photo -->
+    <div class="profile-photo">
+      <div class="profile-photo-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Name -->
+    <h1 class="profile-name">@nomedousuario</h1>
+
+    <!-- Bio -->
+    <p class="profile-bio">Especialista em Marketing Digital | Ajudo empresas a crescerem online</p>
+
+    <!-- Social icons -->
+    <div class="social-row">
+      <!-- Instagram -->
+      <a href="#" class="social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <!-- TikTok -->
+      <a href="#" class="social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+      </a>
+      <!-- YouTube -->
+      <a href="#" class="social-icon" aria-label="YouTube">
+        <svg viewBox="0 0 24 24">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2 29 29 0 0 0-.46 5.25 29 29 0 0 0 .46 5.25 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.25z"/>
+          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <!-- LinkedIn -->
+      <a href="#" class="social-icon" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <!-- Twitter / X -->
+      <a href="#" class="social-icon" aria-label="Twitter">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 4l7.2 9.6L4 20h2l6-5.4L17 20h3l-7.6-10.1L19.2 4H17.2l-5.4 4.8L7 4H4z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Links -->
+    <div class="links-list">
+
+      <!-- Link 1: Site Oficial -->
+      <a href="#" class="link-btn" data-index="0">
+        <div class="link-btn-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <span class="link-btn-text">Meu Site Oficial</span>
+        <svg class="link-btn-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <!-- Link 2: Curso Online -->
+      <a href="#" class="link-btn" data-index="1">
+        <div class="link-btn-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/>
+          </svg>
+        </div>
+        <span class="link-btn-text">Curso Online — Vagas Abertas <span class="tag-new">NOVO</span></span>
+        <svg class="link-btn-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <!-- Link 3: E-book -->
+      <a href="#" class="link-btn" data-index="2">
+        <div class="link-btn-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <span class="link-btn-text">E-book Gratuito — Baixe Agora</span>
+        <svg class="link-btn-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <!-- Highlight card (between links) -->
+      <a href="#" class="highlight-card" data-index="3">
+        <div class="highlight-card-badge">Destaque</div>
+        <h2 class="highlight-card-title">Mentoria 2026 — Ultimas vagas!</h2>
+        <p class="highlight-card-subtitle">Inscreva-se agora</p>
+        <div class="highlight-card-cta">
+          Quero participar
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Link 4: Consultoria -->
+      <a href="#" class="link-btn" data-index="4">
+        <div class="link-btn-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <span class="link-btn-text">Agende uma Consultoria</span>
+        <svg class="link-btn-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <!-- Link 5: Loja -->
+      <a href="#" class="link-btn" data-index="5">
+        <div class="link-btn-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <span class="link-btn-text">Loja de Produtos</span>
+        <svg class="link-btn-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <!-- Link 6: WhatsApp -->
+      <a href="https://wa.me/5511910599011" target="_blank" rel="noopener" class="link-btn whatsapp" data-index="6">
+        <div class="link-btn-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+          </svg>
+        </div>
+        <span class="link-btn-text">Fale Comigo no WhatsApp</span>
+        <svg class="link-btn-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Feito com <a href="https://rbtec.tech" target="_blank" rel="noopener">RB Tecnologia</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Staggered entrance animations for link buttons and highlight card
+    document.addEventListener('DOMContentLoaded', function () {
+      var items = document.querySelectorAll('.link-btn, .highlight-card');
+      var baseDelay = 400; // ms after page load
+      var stagger = 100;  // ms between each item
+
+      items.forEach(function (item, i) {
+        setTimeout(function () {
+          item.classList.add('animate-in');
+        }, baseDelay + i * stagger);
+      });
+    });
+  </script>
+
+</body>
+</html>
