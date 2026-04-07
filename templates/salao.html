@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Nome | Sal&atilde;o de Beleza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa-escuro: #880E4F;
+            --rosa-gold: #B76E79;
+            --preto: #1A1A1A;
+            --branco: #FFF5F5;
+            --branco-puro: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--preto);
+            background-color: var(--branco);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== BANNER DEMO ===== */
+        .demo-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--rosa-escuro);
+            color: var(--branco-puro);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 400;
+            z-index: 10000;
+            letter-spacing: 0.3px;
+        }
+
+        .demo-banner a {
+            color: #FFD54F;
+            font-weight: 600;
+            text-decoration: underline;
+            margin-left: 4px;
+        }
+
+        .demo-banner a:hover {
+            color: #FFF;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            transition: top 0.3s;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--branco);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--rosa-gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav ul li a {
+            color: var(--branco);
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--rosa-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--branco);
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            margin-top: 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--preto) 0%, #2A0A1A 50%, var(--rosa-escuro) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(183,110,121,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(136,14,79,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 24px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--rosa-gold);
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            color: var(--branco);
+            line-height: 1.15;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--rosa-gold);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255,245,245,0.7);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 0;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--rosa-escuro);
+            color: var(--branco-puro);
+        }
+
+        .btn-primary:hover {
+            background: var(--rosa-gold);
+            color: var(--preto);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--branco);
+            border: 1px solid var(--rosa-gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--rosa-gold);
+            color: var(--preto);
+        }
+
+        /* ===== SECTIONS GENERAL ===== */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            color: var(--preto);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: #777;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rosa-gold);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== SERVICOS ===== */
+        #servicos {
+            background: var(--branco);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .servico-card {
+            background: var(--branco-puro);
+            padding: 48px 32px;
+            text-align: center;
+            border: 1px solid rgba(183,110,121,0.15);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servico-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--rosa-escuro), var(--rosa-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .servico-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .servico-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(136,14,79,0.1);
+        }
+
+        .servico-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--branco-puro);
+        }
+
+        .servico-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--preto);
+        }
+
+        .servico-card p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .servico-preco {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--rosa-escuro);
+        }
+
+        .servico-preco small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+        }
+
+        /* ===== GALERIA ===== */
+        #galeria {
+            background: var(--preto);
+            padding: 100px 24px;
+        }
+
+        #galeria .section-header h2 {
+            color: var(--branco);
+        }
+
+        #galeria .section-header p {
+            color: rgba(255,245,245,0.5);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .galeria-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .galeria-item .placeholder {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+        }
+
+        .galeria-item:nth-child(1) .placeholder { background: linear-gradient(135deg, #880E4F, #B76E79); }
+        .galeria-item:nth-child(2) .placeholder { background: linear-gradient(135deg, #B76E79, #D4A0A8); }
+        .galeria-item:nth-child(3) .placeholder { background: linear-gradient(135deg, #1A1A1A, #880E4F); }
+        .galeria-item:nth-child(4) .placeholder { background: linear-gradient(135deg, #D4A0A8, #880E4F); }
+        .galeria-item:nth-child(5) .placeholder { background: linear-gradient(135deg, #880E4F, #1A1A1A); }
+        .galeria-item:nth-child(6) .placeholder { background: linear-gradient(135deg, #B76E79, #880E4F); }
+
+        .galeria-item:hover .placeholder {
+            transform: scale(1.1);
+        }
+
+        .galeria-item::after {
+            content: 'Ver Foto';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(136,14,79,0.6);
+            color: var(--branco-puro);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .galeria-item:hover::after {
+            opacity: 1;
+        }
+
+        /* ===== EQUIPE ===== */
+        #equipe {
+            background: var(--branco);
+        }
+
+        .equipe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        .equipe-card {
+            text-align: center;
+        }
+
+        .equipe-foto {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-gold));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .equipe-foto::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+
+        .equipe-card h3 {
+            font-size: 22px;
+            color: var(--preto);
+            margin-bottom: 8px;
+        }
+
+        .equipe-card .especialidade {
+            font-size: 13px;
+            color: var(--rosa-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .equipe-card p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        #depoimentos {
+            background: linear-gradient(135deg, #FFF5F5, #FFE8EE);
+            padding: 100px 24px;
+        }
+
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .depoimento-card {
+            background: var(--branco-puro);
+            padding: 40px 32px;
+            border-radius: 0;
+            position: relative;
+        }
+
+        .depoimento-card::before {
+            content: '\201C';
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            color: rgba(183,110,121,0.15);
+            position: absolute;
+            top: 12px;
+            left: 24px;
+            line-height: 1;
+        }
+
+        .depoimento-stars {
+            color: var(--rosa-gold);
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .depoimento-card p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .depoimento-autor {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .depoimento-autor-foto {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-gold));
+        }
+
+        .depoimento-autor-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: var(--preto);
+        }
+
+        .depoimento-autor-info span {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            background: linear-gradient(135deg, var(--preto) 0%, #2A0A1A 100%);
+            text-align: center;
+            padding: 100px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(136,14,79,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-final h2 {
+            font-size: 48px;
+            color: var(--branco);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-final p {
+            font-size: 17px;
+            color: rgba(255,245,245,0.6);
+            margin-bottom: 40px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-final .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--preto);
+            color: rgba(255,245,245,0.5);
+            padding: 64px 24px 32px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--branco);
+            margin-bottom: 20px;
+        }
+
+        .footer-col p, .footer-col li {
+            font-size: 14px;
+            line-height: 2;
+            list-style: none;
+        }
+
+        .footer-col a {
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--rosa-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: var(--rosa-gold);
+        }
+
+        /* ===== WHATSAPP FLUTUANTE ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+            z-index: 9998;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+            fill: #FFF;
+        }
+
+        /* ===== FADE IN ANIMATION ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .demo-banner {
+                font-size: 12px;
+                padding: 8px 16px;
+                line-height: 1.5;
+            }
+
+            .demo-banner .sep {
+                display: none;
+            }
+
+            header {
+                top: 52px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(26,26,26,0.98);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.4s;
+                z-index: 9998;
+            }
+
+            nav.open {
+                transform: translateX(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+
+            nav ul li a {
+                font-size: 20px;
+            }
+
+            .hero {
+                margin-top: 52px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-header h2 {
+                font-size: 30px;
+            }
+
+            .servicos-grid,
+            .galeria-grid,
+            .equipe-grid,
+            .depoimentos-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .equipe-grid {
+                gap: 48px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+
+            .cta-final h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .servicos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .galeria-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .depoimentos-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER DEMO -->
+    <div class="demo-banner">
+        Este &eacute; um template demo da RB Tecnologia<span class="sep"> &middot; </span>Personalize com suas cores e conte&uacute;do<span class="sep"> &middot; </span>
+        <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Sal%C3%A3o%20de%20Beleza." target="_blank">Quero esse template</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-inner">
+            <a href="#inicio" class="logo">Studio <span>Nome</span></a>
+            <button class="menu-toggle" aria-label="Menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#inicio" onclick="closeMenu()">In&iacute;cio</a></li>
+                    <li><a href="#servicos" onclick="closeMenu()">Servi&ccedil;os</a></li>
+                    <li><a href="#galeria" onclick="closeMenu()">Galeria</a></li>
+                    <li><a href="#equipe" onclick="closeMenu()">Equipe</a></li>
+                    <li><a href="#contato" onclick="closeMenu()">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="hero-subtitle">Beleza &amp; Sofistica&ccedil;&atilde;o</span>
+            <h1>Realce Sua<br><em>Beleza Natural</em></h1>
+            <p>Cuidar de voc&ecirc; &eacute; a nossa especialidade. Descubra tratamentos exclusivos em um ambiente que respira eleg&acirc;ncia.</p>
+            <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." class="btn btn-primary" target="_blank">Agende Agora</a>
+        </div>
+    </section>
+
+    <!-- SERVICOS -->
+    <section id="servicos">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Nossos Servi&ccedil;os</span>
+                <h2>Tratamentos Exclusivos</h2>
+                <p>Cada detalhe pensado para proporcionar a melhor experi&ecirc;ncia em beleza e bem-estar.</p>
+            </div>
+            <div class="servicos-grid">
+                <div class="servico-card fade-in">
+                    <div class="servico-icon">&#9988;</div>
+                    <h3>Corte Feminino</h3>
+                    <p>Cortes modernos e personalizados que valorizam o formato do seu rosto.</p>
+                    <div class="servico-preco">R$80 <small>/ sess&atilde;o</small></div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-icon">&#9830;</div>
+                    <h3>Colora&ccedil;&atilde;o</h3>
+                    <p>Colora&ccedil;&atilde;o profissional com produtos de alta qualidade e durabilidade.</p>
+                    <div class="servico-preco">R$150 <small>/ sess&atilde;o</small></div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-icon">&#10022;</div>
+                    <h3>Manicure</h3>
+                    <p>Unhas impec&aacute;veis com as t&eacute;cnicas e esmaltes mais atuais do mercado.</p>
+                    <div class="servico-preco">R$45 <small>/ sess&atilde;o</small></div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-icon">&#10048;</div>
+                    <h3>Hidrata&ccedil;&atilde;o</h3>
+                    <p>Devolvemos vida e brilho aos seus cabelos com tratamentos intensivos.</p>
+                    <div class="servico-preco">R$120 <small>/ sess&atilde;o</small></div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-icon">&#9733;</div>
+                    <h3>Maquiagem</h3>
+                    <p>Maquiagem profissional para eventos especiais ou para o dia a dia.</p>
+                    <div class="servico-preco">R$100 <small>/ sess&atilde;o</small></div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-icon">&#10023;</div>
+                    <h3>Design de Sobrancelha</h3>
+                    <p>Sobrancelhas perfeitamente desenhadas para emoldurar o seu olhar.</p>
+                    <div class="servico-preco">R$50 <small>/ sess&atilde;o</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Nosso Trabalho</span>
+                <h2>Galeria</h2>
+                <p>Confira alguns dos nossos trabalhos e inspire-se para a sua pr&oacute;xima transforma&ccedil;&atilde;o.</p>
+            </div>
+            <div class="galeria-grid">
+                <div class="galeria-item fade-in"><div class="placeholder"></div></div>
+                <div class="galeria-item fade-in"><div class="placeholder"></div></div>
+                <div class="galeria-item fade-in"><div class="placeholder"></div></div>
+                <div class="galeria-item fade-in"><div class="placeholder"></div></div>
+                <div class="galeria-item fade-in"><div class="placeholder"></div></div>
+                <div class="galeria-item fade-in"><div class="placeholder"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section id="equipe">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Profissionais</span>
+                <h2>Nossa Equipe</h2>
+                <p>Profissionais apaixonados e altamente qualificados, prontos para cuidar de voc&ecirc;.</p>
+            </div>
+            <div class="equipe-grid">
+                <div class="equipe-card fade-in">
+                    <div class="equipe-foto"></div>
+                    <h3>Ana Beatriz</h3>
+                    <div class="especialidade">Hair Stylist</div>
+                    <p>Especialista em cortes modernos e colora&ccedil;&atilde;o. Mais de 10 anos de experi&ecirc;ncia.</p>
+                </div>
+                <div class="equipe-card fade-in">
+                    <div class="equipe-foto"></div>
+                    <h3>Camila Reis</h3>
+                    <div class="especialidade">Maquiadora</div>
+                    <p>Maquiagem art&iacute;stica e social. Formada pela academia de beleza internacional.</p>
+                </div>
+                <div class="equipe-card fade-in">
+                    <div class="equipe-foto"></div>
+                    <h3>Juliana Martins</h3>
+                    <div class="especialidade">Nail Designer</div>
+                    <p>Especialista em unhas decoradas, alongamento e t&eacute;cnicas em gel e fibra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Depoimentos</span>
+                <h2>O Que Dizem Nossas Clientes</h2>
+                <p>A satisfa&ccedil;&atilde;o de quem j&aacute; viveu a experi&ecirc;ncia Studio Nome.</p>
+            </div>
+            <div class="depoimentos-grid">
+                <div class="depoimento-card fade-in">
+                    <div class="depoimento-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <p>Ambiente incr&iacute;vel e profissionais atenciosas. Meu cabelo nunca ficou t&atilde;o bonito! Recomendo de olhos fechados.</p>
+                    <div class="depoimento-autor">
+                        <div class="depoimento-autor-foto"></div>
+                        <div class="depoimento-autor-info">
+                            <h4>Mariana Costa</h4>
+                            <span>Cliente h&aacute; 2 anos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="depoimento-card fade-in">
+                    <div class="depoimento-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <p>A melhor maquiagem que j&aacute; fiz! A Camila entendeu exatamente o que eu queria para o meu casamento.</p>
+                    <div class="depoimento-autor">
+                        <div class="depoimento-autor-foto"></div>
+                        <div class="depoimento-autor-info">
+                            <h4>Fernanda Oliveira</h4>
+                            <span>Cliente h&aacute; 1 ano</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="depoimento-card fade-in">
+                    <div class="depoimento-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <p>Fa&ccedil;o minhas unhas aqui toda semana. O atendimento &eacute; impec&aacute;vel e as unhas duram muito mais.</p>
+                    <div class="depoimento-autor">
+                        <div class="depoimento-autor-foto"></div>
+                        <div class="depoimento-autor-info">
+                            <h4>Patr&iacute;cia Mendes</h4>
+                            <span>Cliente h&aacute; 3 anos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final" id="contato">
+        <span class="section-label" style="color: var(--rosa-gold);">Agende J&aacute;</span>
+        <h2>Agende seu Hor&aacute;rio</h2>
+        <p>Entre em contato pelo WhatsApp e garanta o seu atendimento com as melhores profissionais da cidade.</p>
+        <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." class="btn btn-primary" target="_blank" style="margin-bottom: 0;">Fale Conosco</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Studio Nome</h4>
+                <p>Rua Exemplo, 123 &mdash; Centro<br>S&atilde;o Paulo &mdash; SP<br>(11) 91059-9011</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hor&aacute;rio de Funcionamento</h4>
+                <ul>
+                    <li>Segunda a Sexta: 9h &agrave;s 20h</li>
+                    <li>S&aacute;bado: 9h &agrave;s 18h</li>
+                    <li>Domingo: Fechado</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Links R&aacute;pidos</h4>
+                <ul>
+                    <li><a href="#inicio">In&iacute;cio</a></li>
+                    <li><a href="#servicos">Servi&ccedil;os</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Studio Nome. Todos os direitos reservados. &middot; Desenvolvido por <a href="https://wa.me/5511910599011" target="_blank">RB Tecnologia</a></p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.004 0C7.165 0 .003 7.161.001 15.999a15.94 15.94 0 0 0 2.14 7.996L0 32l8.247-2.163A15.95 15.95 0 0 0 16 31.998C24.836 31.998 32 24.836 32 15.999 32 7.161 24.836 0 16.004 0zm0 29.332a13.28 13.28 0 0 1-6.77-1.852l-.486-.288-5.034 1.32 1.343-4.906-.316-.503A13.27 13.27 0 0 1 2.668 16C2.668 8.636 8.637 2.667 16.004 2.667c7.363 0 13.33 5.969 13.33 13.332 0 7.365-5.967 13.333-13.33 13.333zm7.31-9.98c-.4-.2-2.366-1.168-2.733-1.3-.367-.134-.634-.2-.9.2-.267.4-1.034 1.3-1.267 1.567-.234.267-.467.3-.867.1-.4-.2-1.69-.623-3.22-1.987-1.19-1.062-1.993-2.374-2.227-2.774-.233-.4-.025-.616.175-.815.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.134-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.234-2.967-.324-.78-.654-.674-.9-.686l-.767-.013c-.267 0-.7.1-1.067.5-.367.4-1.4 1.367-1.4 3.334 0 1.967 1.434 3.867 1.634 4.134.2.267 2.82 4.304 6.832 6.033.954.412 1.7.658 2.28.842.958.305 1.832.262 2.522.159.77-.115 2.367-.968 2.7-1.902.334-.934.334-1.734.234-1.902-.1-.167-.367-.267-.767-.467z"/>
+        </svg>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            nav.classList.toggle('open');
+            toggle.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            nav.classList.remove('open');
+            toggle.classList.remove('active');
+        }
+
+        // Fade-in on scroll
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        fadeEls.forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

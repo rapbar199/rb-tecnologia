@@ -565,6 +565,182 @@
       margin-bottom: 12px;
     }
 
+    /* ===== TEMPLATES ===== */
+    .templates {
+      padding: 100px 0;
+      background: var(--bg-dark);
+    }
+
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .template-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .template-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 212, 255, 0.3);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-glow);
+    }
+
+    .template-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: linear-gradient(135deg, #FF6B35, #FF3D00);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .template-preview {
+      width: 100%;
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .template-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .template-preview-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .template-preview-placeholder .tpl-icon {
+      font-size: 3rem;
+      margin-bottom: 4px;
+    }
+
+    .template-preview-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .template-card:hover .template-preview-overlay {
+      opacity: 1;
+    }
+
+    .template-preview-overlay .btn {
+      padding: 10px 24px;
+      font-size: 0.85rem;
+    }
+
+    .template-info {
+      padding: 24px;
+    }
+
+    .template-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .template-info .template-category {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .template-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .template-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .template-price {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .template-price small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      display: block;
+    }
+
+    .template-buy {
+      background: rgba(0, 212, 255, 0.15);
+      color: var(--accent);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .template-buy:hover {
+      background: var(--accent);
+      color: var(--bg-dark);
+    }
+
+    .templates-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .templates-cta p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .templates-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .templates-grid { grid-template-columns: 1fr; }
+    }
+
     /* ===== SOBRE ===== */
     .sobre {
       padding: 100px 0;
@@ -865,6 +1041,7 @@
         <a href="#inicio">Início</a>
         <a href="#servicos">Serviços</a>
         <a href="#portfolio">Portfólio</a>
+        <a href="#templates">Templates</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -1017,6 +1194,152 @@
             <a href="#" class="portfolio-link">Em breve →</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section class="templates" id="templates">
+    <div class="container">
+      <div class="fade-in" style="text-align:center;">
+        <div class="accent-line" style="margin: 0 auto 24px;"></div>
+        <h2 class="section-title" style="color: var(--white);">Templates Prontos</h2>
+        <p class="section-subtitle" style="margin: 0 auto 48px;">Escolha um layout profissional, personalize com suas cores e imagens, e tenha seu site no ar em poucos dias.</p>
+      </div>
+      <div class="templates-grid">
+
+        <!-- Template 1: Profissional Liberal -->
+        <div class="template-card fade-in">
+          <div class="template-badge">Popular</div>
+          <div class="template-preview" style="background: linear-gradient(135deg, #1B2A4A, #2A3F6A);">
+            <div class="template-preview-placeholder">
+              <span class="tpl-icon">⚖️</span>
+              <span>Profissional Liberal</span>
+            </div>
+            <div class="template-preview-overlay">
+              <a href="templates/profissional.html" class="btn btn-accent">Ver Demo</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <h3>Profissional Liberal</h3>
+            <div class="template-category">Advogados, Médicos, Consultores</div>
+            <p>Layout elegante e sóbrio para profissionais que precisam transmitir confiança e credibilidade.</p>
+            <div class="template-footer">
+              <div class="template-price">
+                R$ 497
+                <small>pagamento único</small>
+              </div>
+              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Profissional%20Liberal." class="template-buy" target="_blank">Quero esse</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 2: Restaurante -->
+        <div class="template-card fade-in">
+          <div class="template-preview" style="background: linear-gradient(135deg, #2D1B00, #5C3A00);">
+            <div class="template-preview-placeholder">
+              <span class="tpl-icon">🍽️</span>
+              <span>Restaurante & Food</span>
+            </div>
+            <div class="template-preview-overlay">
+              <a href="templates/restaurante.html" class="btn btn-accent">Ver Demo</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <h3>Restaurante & Food</h3>
+            <div class="template-category">Restaurantes, Bares, Delivery</div>
+            <p>Design atrativo com cardápio, galeria de fotos e integração com delivery e reservas.</p>
+            <div class="template-footer">
+              <div class="template-price">
+                R$ 597
+                <small>pagamento único</small>
+              </div>
+              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Restaurante." class="template-buy" target="_blank">Quero esse</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 3: Loja Online -->
+        <div class="template-card fade-in">
+          <div class="template-badge">Premium</div>
+          <div class="template-preview" style="background: linear-gradient(135deg, #1A0A3E, #4A148C);">
+            <div class="template-preview-placeholder">
+              <span class="tpl-icon">🛒</span>
+              <span>Loja Online</span>
+            </div>
+            <div class="template-preview-overlay">
+              <a href="templates/loja.html" class="btn btn-accent">Ver Demo</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <h3>Loja Online</h3>
+            <div class="template-category">E-commerce, Catálogo de Produtos</div>
+            <p>Vitrine de produtos com catálogo, carrinho e integração com WhatsApp para pedidos.</p>
+            <div class="template-footer">
+              <div class="template-price">
+                R$ 997
+                <small>pagamento único</small>
+              </div>
+              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Loja%20Online." class="template-buy" target="_blank">Quero esse</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 4: Startup / SaaS -->
+        <div class="template-card fade-in">
+          <div class="template-preview" style="background: linear-gradient(135deg, #0D2137, #1565C0);">
+            <div class="template-preview-placeholder">
+              <span class="tpl-icon">🚀</span>
+              <span>Startup & SaaS</span>
+            </div>
+            <div class="template-preview-overlay">
+              <a href="templates/startup.html" class="btn btn-accent">Ver Demo</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <h3>Startup & SaaS</h3>
+            <div class="template-category">Landing Page, Produto Digital</div>
+            <p>Landing page moderna para startups e produtos digitais com foco em conversão e captação de leads.</p>
+            <div class="template-footer">
+              <div class="template-price">
+                R$ 697
+                <small>pagamento único</small>
+              </div>
+              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Startup." class="template-buy" target="_blank">Quero esse</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 5: Salão de Beleza -->
+        <div class="template-card fade-in">
+          <div class="template-preview" style="background: linear-gradient(135deg, #3E1A2B, #880E4F);">
+            <div class="template-preview-placeholder">
+              <span class="tpl-icon">💇‍♀️</span>
+              <span>Salão & Estética</span>
+            </div>
+            <div class="template-preview-overlay">
+              <a href="templates/salao.html" class="btn btn-accent">Ver Demo</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <h3>Salão & Estética</h3>
+            <div class="template-category">Beleza, Estética, Barbearia</div>
+            <p>Layout sofisticado com galeria de trabalhos, lista de serviços e agendamento via WhatsApp.</p>
+            <div class="template-footer">
+              <div class="template-price">
+                R$ 497
+                <small>pagamento único</small>
+              </div>
+              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Sal%C3%A3o%20de%20Beleza." class="template-buy" target="_blank">Quero esse</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="templates-cta fade-in">
+        <p>Não encontrou o que procura? Desenvolvemos layouts personalizados para qualquer segmento.</p>
+        <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Gostaria%20de%20um%20template%20personalizado." class="btn btn-outline" target="_blank">Solicitar Template Personalizado</a>
       </div>
     </div>
   </section>

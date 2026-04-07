@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Nome - Os Melhores Produtos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --roxo-escuro: #1A0A3E;
+            --roxo-medio: #7C3AED;
+            --branco: #FFFFFF;
+            --cinza: #F5F5F5;
+            --roxo-banner: #4A148C;
+            --texto-cinza: #6B7280;
+            --borda: #E5E7EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background: var(--branco);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== BANNER TOPO ===== */
+        .top-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--roxo-banner);
+            color: var(--branco);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .top-banner a {
+            color: #E1BEE7;
+            font-weight: 600;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .top-banner a:hover {
+            color: var(--branco);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--borda);
+            z-index: 999;
+            transition: box-shadow 0.3s;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--roxo-escuro);
+        }
+
+        .logo span {
+            color: var(--roxo-medio);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: #555;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--roxo-medio);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--roxo-medio);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--roxo-medio);
+            color: var(--branco);
+            font-size: 11px;
+            font-weight: 600;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--roxo-escuro);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            margin-top: 110px;
+            padding: 100px 24px 80px;
+            background: linear-gradient(135deg, var(--roxo-escuro) 0%, #2D1B69 50%, var(--roxo-medio) 100%);
+            text-align: center;
+            color: var(--branco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 40%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.85;
+            margin-bottom: 36px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--branco);
+            color: var(--roxo-escuro);
+        }
+
+        .btn-primary:hover {
+            background: var(--cinza);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-roxo {
+            background: var(--roxo-medio);
+            color: var(--branco);
+        }
+
+        .btn-roxo:hover {
+            background: #6D28D9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 80px 24px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--roxo-escuro);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--texto-cinza);
+            font-size: 16px;
+            margin-bottom: 48px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== CATEGORIAS ===== */
+        .categorias {
+            background: var(--cinza);
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .cat-card {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--borda);
+        }
+
+        .cat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(26, 10, 62, 0.08);
+            border-color: var(--roxo-medio);
+        }
+
+        .cat-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--roxo-medio), var(--roxo-escuro));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+        }
+
+        .cat-card h3 {
+            font-size: 18px;
+            color: var(--roxo-escuro);
+            margin-bottom: 6px;
+        }
+
+        .cat-card p {
+            font-size: 14px;
+            color: var(--texto-cinza);
+        }
+
+        /* ===== PRODUTOS ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .product-card {
+            background: var(--branco);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--borda);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(26, 10, 62, 0.08);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+        }
+
+        .product-img .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--roxo-medio);
+            color: var(--branco);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: var(--roxo-medio);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--roxo-escuro);
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--roxo-escuro);
+            margin-bottom: 4px;
+        }
+
+        .product-price-old {
+            font-size: 14px;
+            color: var(--texto-cinza);
+            text-decoration: line-through;
+            margin-bottom: 16px;
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background: #25D366;
+            color: var(--branco);
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1EBE57;
+            transform: translateY(-2px);
+        }
+
+        /* ===== BENEFICIOS ===== */
+        .beneficios {
+            background: var(--cinza);
+        }
+
+        .benef-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .benef-card {
+            text-align: center;
+            padding: 32px 20px;
+            background: var(--branco);
+            border-radius: 16px;
+            border: 1px solid var(--borda);
+        }
+
+        .benef-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(26, 10, 62, 0.05));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+        }
+
+        .benef-card h3 {
+            font-size: 16px;
+            color: var(--roxo-escuro);
+            margin-bottom: 6px;
+        }
+
+        .benef-card p {
+            font-size: 14px;
+            color: var(--texto-cinza);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: linear-gradient(135deg, var(--roxo-escuro) 0%, #2D1B69 100%);
+            color: var(--branco);
+            text-align: center;
+        }
+
+        .newsletter .section-title {
+            color: var(--branco);
+        }
+
+        .newsletter .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 14px 28px;
+            background: var(--roxo-medio);
+            color: var(--branco);
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: #6D28D9;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--roxo-escuro);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 24px 30px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--branco);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--roxo-medio);
+        }
+
+        .footer h4 {
+            color: var(--branco);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--branco);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* ===== FADE-IN ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 110px;
+            left: 0;
+            width: 100%;
+            background: var(--branco);
+            border-bottom: 1px solid var(--borda);
+            z-index: 998;
+            padding: 20px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 14px 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            border-bottom: 1px solid var(--borda);
+            transition: color 0.3s;
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--roxo-medio);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-banner {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .header {
+                top: 36px;
+            }
+
+            .hero {
+                margin-top: 106px;
+                padding: 60px 24px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .benef-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .section {
+                padding: 60px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .benef-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner Topo -->
+    <div class="top-banner">
+        Este é um template demo da RB Tecnologia · Personalize com suas cores e conteúdo ·
+        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20no%20template%20Loja%20Online." target="_blank">Quero esse template</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#inicio" class="logo">Loja<span>Nome</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="cart-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="cart-badge">3</span>
+                </div>
+                <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#inicio" onclick="closeMenu()">Início</a>
+        <a href="#produtos" onclick="closeMenu()">Produtos</a>
+        <a href="#categorias" onclick="closeMenu()">Categorias</a>
+        <a href="#sobre" onclick="closeMenu()">Sobre</a>
+        <a href="#contato" onclick="closeMenu()">Contato</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-content fade-in">
+            <h1>Encontre os Melhores Produtos</h1>
+            <p>Qualidade, variedade e os melhores preços. Tudo o que você precisa em um só lugar.</p>
+            <a href="#produtos" class="btn btn-primary">Ver Produtos</a>
+        </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="section categorias" id="categorias">
+        <div class="container">
+            <h2 class="section-title fade-in">Categorias</h2>
+            <p class="section-subtitle fade-in">Explore nossos departamentos e encontre o que procura</p>
+            <div class="cat-grid">
+                <div class="cat-card fade-in">
+                    <div class="cat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
+                            <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+                            <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+                            <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+                            <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+                        </svg>
+                    </div>
+                    <h3>Eletrônicos</h3>
+                    <p>42 produtos</p>
+                </div>
+                <div class="cat-card fade-in">
+                    <div class="cat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.38 3.46L16 2 12 5.5 8 2 3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+                        </svg>
+                    </div>
+                    <h3>Moda</h3>
+                    <p>78 produtos</p>
+                </div>
+                <div class="cat-card fade-in">
+                    <div class="cat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <h3>Casa</h3>
+                    <p>56 produtos</p>
+                </div>
+                <div class="cat-card fade-in">
+                    <div class="cat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4l3 3"/>
+                        </svg>
+                    </div>
+                    <h3>Esportes</h3>
+                    <p>35 produtos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="section" id="produtos">
+        <div class="container">
+            <h2 class="section-title fade-in">Produtos em Destaque</h2>
+            <p class="section-subtitle fade-in">Os mais vendidos e as melhores ofertas selecionadas para você</p>
+            <div class="products-grid">
+
+                <div class="product-card fade-in">
+                    <div class="product-img" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <span class="tag">Novo</span>
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Eletrônicos</p>
+                        <h3 class="product-name">Smartphone Ultra Pro 256GB</h3>
+                        <p class="product-price">R$ 2.499,00</p>
+                        <p class="product-price-old">R$ 3.199,00</p>
+                        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20no%20Smartphone%20Ultra%20Pro%20256GB" target="_blank">
+                            <button class="btn-whatsapp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.527 5.855L.06 23.487a.5.5 0 0 0 .612.612l5.632-1.467A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.94 0-3.75-.562-5.283-1.527l-.368-.224-3.821.996.996-3.821-.224-.368A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                                Comprar pelo WhatsApp
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-img" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Eletrônicos</p>
+                        <h3 class="product-name">Notebook Performance i7 16GB</h3>
+                        <p class="product-price">R$ 4.899,00</p>
+                        <p class="product-price-old">R$ 5.499,00</p>
+                        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20no%20Notebook%20Performance%20i7%2016GB" target="_blank">
+                            <button class="btn-whatsapp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.527 5.855L.06 23.487a.5.5 0 0 0 .612.612l5.632-1.467A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.94 0-3.75-.562-5.283-1.527l-.368-.224-3.821.996.996-3.821-.224-.368A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                                Comprar pelo WhatsApp
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <span class="tag">-30%</span>
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Eletrônicos</p>
+                        <h3 class="product-name">Fone Bluetooth Noise Cancel</h3>
+                        <p class="product-price">R$ 349,00</p>
+                        <p class="product-price-old">R$ 499,00</p>
+                        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20no%20Fone%20Bluetooth%20Noise%20Cancel" target="_blank">
+                            <button class="btn-whatsapp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.527 5.855L.06 23.487a.5.5 0 0 0 .612.612l5.632-1.467A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.94 0-3.75-.562-5.283-1.527l-.368-.224-3.821.996.996-3.821-.224-.368A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                                Comprar pelo WhatsApp
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-img" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(100,100,100,0.4)" stroke-width="1.5"><path d="M20.38 3.46L16 2 12 5.5 8 2 3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Moda</p>
+                        <h3 class="product-name">Camiseta Premium Algodão</h3>
+                        <p class="product-price">R$ 89,90</p>
+                        <p class="product-price-old">R$ 129,90</p>
+                        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20na%20Camiseta%20Premium%20Algodão" target="_blank">
+                            <button class="btn-whatsapp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.527 5.855L.06 23.487a.5.5 0 0 0 .612.612l5.632-1.467A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.94 0-3.75-.562-5.283-1.527l-.368-.224-3.821.996.996-3.821-.224-.368A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                                Comprar pelo WhatsApp
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-img" style="background: linear-gradient(135deg, #fbc2eb, #a6c1ee);">
+                        <span class="tag">Mais Vendido</span>
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(100,100,100,0.4)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Casa</p>
+                        <h3 class="product-name">Luminária LED Inteligente RGB</h3>
+                        <p class="product-price">R$ 199,00</p>
+                        <p class="product-price-old">R$ 279,00</p>
+                        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20na%20Luminária%20LED%20Inteligente%20RGB" target="_blank">
+                            <button class="btn-whatsapp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.527 5.855L.06 23.487a.5.5 0 0 0 .612.612l5.632-1.467A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.94 0-3.75-.562-5.283-1.527l-.368-.224-3.821.996.996-3.821-.224-.368A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                                Comprar pelo WhatsApp
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-img" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Esportes</p>
+                        <h3 class="product-name">Tênis Running Performance</h3>
+                        <p class="product-price">R$ 399,00</p>
+                        <p class="product-price-old">R$ 549,00</p>
+                        <a href="https://wa.me/5511910599011?text=Olá!%20Tenho%20interesse%20no%20Tênis%20Running%20Performance" target="_blank">
+                            <button class="btn-whatsapp">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.122 1.527 5.855L.06 23.487a.5.5 0 0 0 .612.612l5.632-1.467A11.933 11.933 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.94 0-3.75-.562-5.283-1.527l-.368-.224-3.821.996.996-3.821-.224-.368A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                                Comprar pelo WhatsApp
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="section beneficios" id="sobre">
+        <div class="container">
+            <h2 class="section-title fade-in">Por que comprar conosco?</h2>
+            <p class="section-subtitle fade-in">Vantagens exclusivas para nossos clientes</p>
+            <div class="benef-grid">
+                <div class="benef-card fade-in">
+                    <div class="benef-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <h3>Frete Grátis</h3>
+                    <p>Para compras acima de R$ 199</p>
+                </div>
+                <div class="benef-card fade-in">
+                    <div class="benef-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>Pagamento Seguro</h3>
+                    <p>Seus dados 100% protegidos</p>
+                </div>
+                <div class="benef-card fade-in">
+                    <div class="benef-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                    </div>
+                    <h3>Troca Fácil</h3>
+                    <p>Até 30 dias para trocar</p>
+                </div>
+                <div class="benef-card fade-in">
+                    <div class="benef-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3>Suporte 24h</h3>
+                    <p>Atendimento a qualquer hora</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section newsletter" id="contato">
+        <div class="container">
+            <h2 class="section-title fade-in">Receba Ofertas Exclusivas</h2>
+            <p class="section-subtitle fade-in">Cadastre-se e receba as melhores promoções no seu e-mail</p>
+            <form class="newsletter-form fade-in" onsubmit="event.preventDefault(); alert('Cadastro realizado com sucesso!');">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">Loja<span>Nome</span></div>
+                <p>Sua loja online com os melhores produtos, preços e atendimento. Compre com segurança e receba no conforto da sua casa.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4>Institucional</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ajuda</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Central de Ajuda</a></li>
+                    <li><a href="#">Trocas e Devoluções</a></li>
+                    <li><a href="#">Rastrear Pedido</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <ul class="footer-links">
+                    <li><a href="#">contato@lojanome.com.br</a></li>
+                    <li><a href="#">(11) 91059-9011</a></li>
+                    <li><a href="#">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LojaNome. Todos os direitos reservados. Template por RB Tecnologia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile toggle
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('hamburger').classList.remove('active');
+            document.getElementById('mobileNav').classList.remove('active');
+        }
+
+        // Header scroll shadow
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
