@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imobiliaria Nome | Encontre o Imovel dos Seus Sonhos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #1B4332;
+      --green-light: #2D6A4F;
+      --gold: #DAA520;
+      --gold-light: #E8C547;
+      --white: #FFFFFF;
+      --gray-light: #F8F9FA;
+      --gray: #6C757D;
+      --gray-dark: #343A40;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --banner-h: 44px;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--banner-h) + 72px); }
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
+
+    /* ========== ANIMATIONS ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== DEMO BANNER ========== */
+    .demo-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--green);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      height: var(--banner-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .demo-banner a {
+      color: var(--gold);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .demo-banner a:hover { color: var(--gold-light); }
+
+    /* ========== HEADER ========== */
+    .header {
+      position: fixed;
+      top: var(--banner-h);
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: box-shadow 0.3s;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo svg { flex-shrink: 0; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gray-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      font-family: var(--font-body);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--green);
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-green {
+      background: var(--green);
+      color: var(--white);
+    }
+    .btn-green:hover { background: var(--green-light); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--green);
+      color: var(--green);
+    }
+    .btn-outline:hover { background: var(--green); color: var(--white); }
+    .header-cta { font-size: 0.85rem; padding: 10px 20px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ========== HERO ========== */
+    .hero {
+      margin-top: calc(var(--banner-h) + 72px);
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      padding: 80px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(218,165,32,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero h1 {
+      color: var(--white);
+      font-size: 2.8rem;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.15rem;
+      max-width: 550px;
+      margin: 0 auto 40px;
+    }
+    .search-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .search-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .search-field select,
+    .search-field input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #E9ECEF;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      color: var(--gray-dark);
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+    .search-field select:focus,
+    .search-field input:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+    .search-box .btn { align-self: flex-end; padding: 12px 28px; }
+
+    /* ========== SECTIONS ========== */
+    .section {
+      padding: 80px 24px;
+    }
+    .section-alt { background: var(--gray-light); }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-header h2 {
+      font-size: 2.2rem;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    /* ========== PROPERTY CARDS ========== */
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .property-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .property-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .property-img {
+      height: 220px;
+      position: relative;
+    }
+    .property-img .tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--gold);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .property-body { padding: 20px; }
+    .property-price {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .property-address {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .property-features {
+      display: flex;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #E9ECEF;
+    }
+    .property-feat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .property-feat svg { color: var(--green); }
+
+    /* ========== ABOUT ========== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-text h2 {
+      font-size: 2.2rem;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 16px;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--gray-light);
+      border-radius: 12px;
+    }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+    .about-image {
+      height: 400px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 50%, rgba(218,165,32,0.3) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60%;
+      height: 60%;
+      background: linear-gradient(135deg, transparent 0%, rgba(218,165,32,0.15) 100%);
+      border-radius: 100% 0 0 0;
+    }
+
+    /* ========== SERVICES ========== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid transparent;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      border-color: var(--gold);
+    }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gray-light);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--green);
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 32px;
+      right: 32px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 0 0 4px 4px;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      color: var(--gold);
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--gray-dark);
+      font-size: 0.95rem;
+    }
+    .testimonial-role {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 2.4rem;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: var(--white);
+      font-size: 1.05rem;
+      padding: 16px 36px;
+      border-radius: 50px;
+    }
+    .btn-whatsapp:hover { background: #20BD5A; }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--green);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 24px 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-brand .logo {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      transition: background 0.2s;
+    }
+    .social-link:hover { background: var(--gold); color: var(--green); }
+    .footer h4 {
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .footer ul li { margin-bottom: 10px; }
+    .footer ul a {
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer ul a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* ========== FLOATING WHATSAPP ========== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 998;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+    }
+
+    /* ========== MOBILE NAV ========== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: calc(var(--banner-h) + 72px);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      z-index: 998;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a {
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 8px 0;
+      border-bottom: 1px solid #E9ECEF;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .properties-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid .testimonial-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .demo-banner { font-size: 0.75rem; padding: 10px 12px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .header-cta { display: none; }
+      .hero { padding: 50px 20px 70px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .search-box {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      .search-box .btn { width: 100%; justify-content: center; }
+      .section { padding: 60px 20px; }
+      .section-header h2 { font-size: 1.75rem; }
+      .properties-grid { grid-template-columns: 1fr; }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .about-image {
+        height: 260px;
+        order: -1;
+      }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .stat-number { font-size: 1.6rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonials-grid .testimonial-card:last-child {
+        grid-column: auto;
+        max-width: none;
+      }
+      .cta-section h2 { font-size: 1.75rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .whatsapp-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    Este e um template demo da RB Tecnologia&nbsp;|&nbsp;
+    <a href="https://wa.me/5511910599011" target="_blank" rel="noopener">Quer um site assim? Chama no WhatsApp</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Imobiliaria Nome
+      </a>
+      <nav class="nav-links">
+        <a href="#imoveis">Imoveis</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Servicos</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato" class="btn btn-primary header-cta">Fale Conosco</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#imoveis">Imoveis</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Servicos</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato" class="btn btn-primary" style="text-align:center;margin-top:8px;">Fale Conosco</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <h1 class="fade-in">Encontre o Imovel dos Seus Sonhos</h1>
+      <p class="fade-in">Milhares de opcoes em casas, apartamentos e terrenos para voce. Realize o sonho da casa propria com quem entende do mercado.</p>
+      <div class="search-box fade-in">
+        <div class="search-field">
+          <label>Tipo</label>
+          <select>
+            <option>Todos os tipos</option>
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Terreno</option>
+            <option>Comercial</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label>Cidade</label>
+          <select>
+            <option>Todas as cidades</option>
+            <option>Sao Paulo</option>
+            <option>Rio de Janeiro</option>
+            <option>Belo Horizonte</option>
+            <option>Curitiba</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label>Faixa de Preco</label>
+          <select>
+            <option>Qualquer valor</option>
+            <option>Ate R$ 300 mil</option>
+            <option>R$ 300 mil - R$ 600 mil</option>
+            <option>R$ 600 mil - R$ 1 milhao</option>
+            <option>Acima de R$ 1 milhao</option>
+          </select>
+        </div>
+        <button class="btn btn-green">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Buscar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMOVEIS EM DESTAQUE -->
+  <section class="section" id="imoveis">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Destaques</span>
+        <h2>Imoveis em Destaque</h2>
+        <p>Selecao especial dos melhores imoveis disponiveis no momento</p>
+      </div>
+      <div class="properties-grid">
+
+        <!-- Card 1 -->
+        <div class="property-card fade-in">
+          <div class="property-img" style="background: linear-gradient(135deg, #2D6A4F 0%, #40916C 50%, #95D5B2 100%);">
+            <span class="tag">Venda</span>
+          </div>
+          <div class="property-body">
+            <div class="property-price">R$ 850.000</div>
+            <div class="property-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Jardins, Sao Paulo - SP
+            </div>
+            <div class="property-features">
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 12h20"/><path d="M12 4v8"/></svg> 120m2</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg> 3 quartos</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1z"/><path d="M3 16v4"/><path d="M21 16v4"/><path d="M6 12V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg> 2 ban.</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> 2 vagas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="property-card fade-in">
+          <div class="property-img" style="background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 50%, #B7E4C7 100%);">
+            <span class="tag">Venda</span>
+          </div>
+          <div class="property-body">
+            <div class="property-price">R$ 1.200.000</div>
+            <div class="property-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Leblon, Rio de Janeiro - RJ
+            </div>
+            <div class="property-features">
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 12h20"/><path d="M12 4v8"/></svg> 180m2</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg> 4 quartos</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1z"/><path d="M3 16v4"/><path d="M21 16v4"/><path d="M6 12V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg> 3 ban.</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> 3 vagas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="property-card fade-in">
+          <div class="property-img" style="background: linear-gradient(135deg, #40916C 0%, #52B788 50%, #D8F3DC 100%);">
+            <span class="tag">Aluguel</span>
+          </div>
+          <div class="property-body">
+            <div class="property-price">R$ 3.500/mes</div>
+            <div class="property-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Savassi, Belo Horizonte - MG
+            </div>
+            <div class="property-features">
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 12h20"/><path d="M12 4v8"/></svg> 85m2</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg> 2 quartos</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1z"/><path d="M3 16v4"/><path d="M21 16v4"/><path d="M6 12V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg> 1 ban.</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> 1 vaga</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="property-card fade-in">
+          <div class="property-img" style="background: linear-gradient(135deg, #1B4332 0%, #52B788 50%, #DAA520 100%);">
+            <span class="tag">Venda</span>
+          </div>
+          <div class="property-body">
+            <div class="property-price">R$ 450.000</div>
+            <div class="property-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Batel, Curitiba - PR
+            </div>
+            <div class="property-features">
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 12h20"/><path d="M12 4v8"/></svg> 70m2</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg> 2 quartos</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1z"/><path d="M3 16v4"/><path d="M21 16v4"/><path d="M6 12V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg> 1 ban.</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> 1 vaga</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="property-card fade-in">
+          <div class="property-img" style="background: linear-gradient(135deg, #2D6A4F 0%, #74C69D 50%, #B7E4C7 100%);">
+            <span class="tag">Aluguel</span>
+          </div>
+          <div class="property-body">
+            <div class="property-price">R$ 5.200/mes</div>
+            <div class="property-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Vila Madalena, Sao Paulo - SP
+            </div>
+            <div class="property-features">
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 12h20"/><path d="M12 4v8"/></svg> 150m2</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg> 3 quartos</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1z"/><path d="M3 16v4"/><path d="M21 16v4"/><path d="M6 12V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg> 2 ban.</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> 2 vagas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="property-card fade-in">
+          <div class="property-img" style="background: linear-gradient(135deg, #52B788 0%, #95D5B2 50%, #D8F3DC 100%);">
+            <span class="tag">Venda</span>
+          </div>
+          <div class="property-body">
+            <div class="property-price">R$ 2.800.000</div>
+            <div class="property-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Alphaville, Barueri - SP
+            </div>
+            <div class="property-features">
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 12h20"/><path d="M12 4v8"/></svg> 350m2</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg> 5 quartos</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16a1 1 0 0 1 1 1v3H3v-3a1 1 0 0 1 1-1z"/><path d="M3 16v4"/><path d="M21 16v4"/><path d="M6 12V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"/></svg> 4 ban.</span>
+              <span class="property-feat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> 4 vagas</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="section section-alt" id="sobre">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <span class="section-label">Quem Somos</span>
+          <h2>Sobre a Imobiliaria</h2>
+          <p>Com mais de 15 anos de experiencia no mercado imobiliario, ajudamos milhares de familias a encontrar o lar perfeito. Nossa equipe de corretores especializados oferece atendimento personalizado e transparente.</p>
+          <p>Trabalhamos com os melhores imoveis nas principais regioes do Brasil, sempre priorizando a satisfacao dos nossos clientes e a seguranca nas transacoes.</p>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Anos no mercado</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2.500+</div>
+              <div class="stat-label">Imoveis vendidos</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">4.800+</div>
+              <div class="stat-label">Clientes satisfeitos</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image fade-in"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICOS -->
+  <section class="section" id="servicos">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">O que fazemos</span>
+        <h2>Nossos Servicos</h2>
+        <p>Solucoes completas para todas as suas necessidades imobiliarias</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Compra de Imoveis</h3>
+          <p>Encontramos o imovel ideal para voce, com opcoes que se encaixam no seu orcamento e estilo de vida.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Venda de Imoveis</h3>
+          <p>Divulgamos seu imovel nas melhores plataformas e encontramos o comprador certo rapidamente.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Aluguel</h3>
+          <p>Administramos todo o processo de locacao, desde a busca ate a assinatura do contrato.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Avaliacao de Imoveis</h3>
+          <p>Avaliacao profissional com laudo tecnico para voce saber o valor real do seu patrimonio.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section section-alt" id="depoimentos">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Depoimentos</span>
+        <h2>O que nossos clientes dizem</h2>
+        <p>A satisfacao dos nossos clientes e o nosso maior orgulho</p>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Excelente atendimento do inicio ao fim. Encontraram o apartamento perfeito para minha familia em menos de duas semanas. Recomendo de olhos fechados!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #2D6A4F, #52B788);"></div>
+            <div>
+              <div class="testimonial-name">Ana Carolina Silva</div>
+              <div class="testimonial-role">Compradora - Sao Paulo</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Vendi meu imovel em tempo recorde e por um valor acima do que eu esperava. A equipe e muito profissional e transparente em todo o processo.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #1B4332, #40916C);"></div>
+            <div>
+              <div class="testimonial-name">Roberto Mendes</div>
+              <div class="testimonial-role">Vendedor - Rio de Janeiro</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Aluguei meu primeiro apartamento com a ajuda deles. Me explicaram tudo com paciencia e cuidaram de toda a documentacao. Servico impecavel!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #40916C, #95D5B2);"></div>
+            <div>
+              <div class="testimonial-name">Juliana Ferreira</div>
+              <div class="testimonial-role">Locataria - Curitiba</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section" id="contato">
+    <div class="container fade-in">
+      <h2>Encontre seu imovel ideal</h2>
+      <p>Fale com um de nossos especialistas e comece a realizar o sonho da casa propria hoje mesmo.</p>
+      <a href="https://wa.me/5511910599011" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar pelo WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Imobiliaria Nome
+        </div>
+        <p>Sua imobiliaria de confianca. Mais de 15 anos ajudando voce a encontrar o imovel perfeito.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegacao</h4>
+        <ul>
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#imoveis">Imoveis</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Servicos</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Servicos</h4>
+        <ul>
+          <li><a href="#">Compra</a></li>
+          <li><a href="#">Venda</a></li>
+          <li><a href="#">Aluguel</a></li>
+          <li><a href="#">Avaliacao</a></li>
+          <li><a href="#">Consultoria</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>
+            <a href="https://wa.me/5511910599011" target="_blank" rel="noopener">
+              (11) 91059-9011
+            </a>
+          </li>
+          <li><a href="mailto:contato@imobiliarianome.com.br">contato@imobiliarianome.com.br</a></li>
+          <li>Sao Paulo, SP - Brasil</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Imobiliaria Nome. Todos os direitos reservados. | Desenvolvido por <a href="https://wa.me/5511910599011" target="_blank" rel="noopener" style="color:var(--gold);">RB Tecnologia</a>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/5511910599011" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+      });
+    });
+
+    // Fade-in on scroll with IntersectionObserver
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
