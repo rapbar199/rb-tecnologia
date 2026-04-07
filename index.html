@@ -637,6 +637,18 @@
       margin-bottom: 4px;
     }
 
+    .template-preview-placeholder .tpl-icon-svg {
+      width: 48px;
+      height: 48px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+    }
+
+    .template-price strong {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
     .template-preview-overlay {
       position: absolute;
       top: 0;
@@ -1008,8 +1020,6 @@
       .hero-graphic { max-width: 260px; }
 
       .servicos-grid { grid-template-columns: 1fr; }
-      .portfolio-grid { grid-template-columns: 1fr; }
-
       .sobre-stats {
         flex-direction: column;
         gap: 16px;
@@ -1040,7 +1050,6 @@
       <nav class="nav-links">
         <a href="#inicio">Início</a>
         <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
         <a href="#templates">Templates</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
@@ -1107,92 +1116,24 @@
       </div>
       <div class="servicos-grid">
         <div class="servico-card fade-in">
-          <div class="servico-icon">🌐</div>
+          <div class="servico-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
           <h3>Desenvolvimento de Sites</h3>
           <p>Sites institucionais, e-commerces e portais modernos, rápidos e otimizados para SEO e conversão.</p>
         </div>
         <div class="servico-card fade-in">
-          <div class="servico-icon">📱</div>
+          <div class="servico-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
           <h3>Aplicativos Web</h3>
           <p>Sistemas web responsivos e intuitivos que funcionam em qualquer dispositivo, com performance e segurança.</p>
         </div>
         <div class="servico-card fade-in">
-          <div class="servico-icon">🚀</div>
+          <div class="servico-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <h3>Landing Pages</h3>
           <p>Páginas de alta conversão para campanhas de marketing, lançamentos e captação de leads qualificados.</p>
         </div>
         <div class="servico-card fade-in">
-          <div class="servico-icon">⚙️</div>
+          <div class="servico-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
           <h3>Sistemas Personalizados</h3>
           <p>Automações, dashboards e ferramentas sob medida para otimizar os processos do seu negócio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTFÓLIO -->
-  <section class="portfolio" id="portfolio">
-    <div class="container">
-      <div class="fade-in" style="text-align:center;">
-        <div class="accent-line" style="margin: 0 auto 24px;"></div>
-        <h2 class="section-title" style="color: var(--white);">Portfólio</h2>
-        <p class="section-subtitle" style="margin: 0 auto 48px;">Alguns dos projetos que desenvolvemos para nossos clientes.</p>
-      </div>
-      <div class="portfolio-grid">
-        <!-- Hambúrguer do Seu Oswaldo -->
-        <div class="portfolio-card fade-in">
-          <div class="portfolio-image portfolio-image-1">
-            <span><span class="portfolio-emoji">🍔</span>Hambúrguer do<br>Seu Oswaldo</span>
-          </div>
-          <div class="portfolio-info">
-            <span class="portfolio-tag">Site Institucional</span>
-            <span class="portfolio-tag">Restaurante</span>
-            <h3>Hambúrguer do Seu Oswaldo</h3>
-            <p>Site para hamburgueria artesanal tradicional de São Paulo. Design atrativo com foco na identidade da marca e cardápio.</p>
-            <a href="https://hamburguerdoseuoswaldo.com.br/" class="portfolio-link" target="_blank">Visitar site →</a>
-          </div>
-        </div>
-
-        <!-- ClickPatas -->
-        <div class="portfolio-card fade-in">
-          <div class="portfolio-image portfolio-image-2">
-            <span><span class="portfolio-emoji">🐾</span>ClickPatas</span>
-          </div>
-          <div class="portfolio-info">
-            <span class="portfolio-tag">Plataforma</span>
-            <span class="portfolio-tag">Pet Care</span>
-            <h3>ClickPatas</h3>
-            <p>Plataforma que conecta donos de pets com profissionais verificados de pet care. Busca por serviços, agendamento e avaliações.</p>
-            <a href="https://clickpatas.com.br/" class="portfolio-link" target="_blank">Visitar site →</a>
-          </div>
-        </div>
-
-        <!-- Bolão da Copa -->
-        <div class="portfolio-card fade-in">
-          <div class="portfolio-image portfolio-image-3">
-            <span><span class="portfolio-emoji">⚽</span>Bolão da<br>Copa 2026</span>
-          </div>
-          <div class="portfolio-info">
-            <span class="portfolio-tag">Sistema Web</span>
-            <span class="portfolio-tag">Esportes</span>
-            <h3>Bolão da Copa 2026</h3>
-            <p>Sistema completo de palpites para a Copa do Mundo com rankings, pontuação automática e gestão de grupos.</p>
-            <a href="#" class="portfolio-link">Em breve →</a>
-          </div>
-        </div>
-
-        <!-- SharkDeck -->
-        <div class="portfolio-card fade-in">
-          <div class="portfolio-image portfolio-image-4">
-            <span><span class="portfolio-emoji">🦈</span>SharkDeck</span>
-          </div>
-          <div class="portfolio-info">
-            <span class="portfolio-tag">Plataforma</span>
-            <span class="portfolio-tag">Investimento</span>
-            <h3>SharkDeck</h3>
-            <p>Plataforma de investimento inspirada no Shark Tank. Conexão entre empreendedores e investidores com pitch e análise de projetos.</p>
-            <a href="#" class="portfolio-link">Em breve →</a>
-          </div>
         </div>
       </div>
     </div>
@@ -1213,7 +1154,7 @@
           <div class="template-badge">Popular</div>
           <div class="template-preview" style="background: linear-gradient(135deg, #1B2A4A, #2A3F6A);">
             <div class="template-preview-placeholder">
-              <span class="tpl-icon">⚖️</span>
+              <svg class="tpl-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M3 12l4.5-4.5M3 12l4.5 4.5M21 12l-4.5-4.5M21 12l-4.5 4.5M12 3l-3 3M12 3l3 3"/></svg>
               <span>Profissional Liberal</span>
             </div>
             <div class="template-preview-overlay">
@@ -1226,10 +1167,10 @@
             <p>Layout elegante e sóbrio para profissionais que precisam transmitir confiança e credibilidade.</p>
             <div class="template-footer">
               <div class="template-price">
-                R$ 497
-                <small>pagamento único</small>
+                A partir de <strong>R$ 49</strong>/mês
+                <small>template + domínio + hospedagem</small>
               </div>
-              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Profissional%20Liberal." class="template-buy" target="_blank">Quero esse</a>
+              <a href="templates/profissional.html#planos" class="template-buy">Ver Planos</a>
             </div>
           </div>
         </div>
@@ -1238,7 +1179,7 @@
         <div class="template-card fade-in">
           <div class="template-preview" style="background: linear-gradient(135deg, #2D1B00, #5C3A00);">
             <div class="template-preview-placeholder">
-              <span class="tpl-icon">🍽️</span>
+              <svg class="tpl-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
               <span>Restaurante & Food</span>
             </div>
             <div class="template-preview-overlay">
@@ -1251,10 +1192,10 @@
             <p>Design atrativo com cardápio, galeria de fotos e integração com delivery e reservas.</p>
             <div class="template-footer">
               <div class="template-price">
-                R$ 597
-                <small>pagamento único</small>
+                A partir de <strong>R$ 49</strong>/mês
+                <small>template + domínio + hospedagem</small>
               </div>
-              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Restaurante." class="template-buy" target="_blank">Quero esse</a>
+              <a href="templates/restaurante.html#planos" class="template-buy">Ver Planos</a>
             </div>
           </div>
         </div>
@@ -1264,7 +1205,7 @@
           <div class="template-badge">Premium</div>
           <div class="template-preview" style="background: linear-gradient(135deg, #1A0A3E, #4A148C);">
             <div class="template-preview-placeholder">
-              <span class="tpl-icon">🛒</span>
+              <svg class="tpl-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
               <span>Loja Online</span>
             </div>
             <div class="template-preview-overlay">
@@ -1277,10 +1218,10 @@
             <p>Vitrine de produtos com catálogo, carrinho e integração com WhatsApp para pedidos.</p>
             <div class="template-footer">
               <div class="template-price">
-                R$ 997
-                <small>pagamento único</small>
+                A partir de <strong>R$ 49</strong>/mês
+                <small>template + domínio + hospedagem</small>
               </div>
-              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Loja%20Online." class="template-buy" target="_blank">Quero esse</a>
+              <a href="templates/loja.html#planos" class="template-buy">Ver Planos</a>
             </div>
           </div>
         </div>
@@ -1289,7 +1230,7 @@
         <div class="template-card fade-in">
           <div class="template-preview" style="background: linear-gradient(135deg, #0D2137, #1565C0);">
             <div class="template-preview-placeholder">
-              <span class="tpl-icon">🚀</span>
+              <svg class="tpl-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
               <span>Startup & SaaS</span>
             </div>
             <div class="template-preview-overlay">
@@ -1302,10 +1243,10 @@
             <p>Landing page moderna para startups e produtos digitais com foco em conversão e captação de leads.</p>
             <div class="template-footer">
               <div class="template-price">
-                R$ 697
-                <small>pagamento único</small>
+                A partir de <strong>R$ 49</strong>/mês
+                <small>template + domínio + hospedagem</small>
               </div>
-              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Startup." class="template-buy" target="_blank">Quero esse</a>
+              <a href="templates/startup.html#planos" class="template-buy">Ver Planos</a>
             </div>
           </div>
         </div>
@@ -1314,7 +1255,7 @@
         <div class="template-card fade-in">
           <div class="template-preview" style="background: linear-gradient(135deg, #3E1A2B, #880E4F);">
             <div class="template-preview-placeholder">
-              <span class="tpl-icon">💇‍♀️</span>
+              <svg class="tpl-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
               <span>Salão & Estética</span>
             </div>
             <div class="template-preview-overlay">
@@ -1327,10 +1268,10 @@
             <p>Layout sofisticado com galeria de trabalhos, lista de serviços e agendamento via WhatsApp.</p>
             <div class="template-footer">
               <div class="template-price">
-                R$ 497
-                <small>pagamento único</small>
+                A partir de <strong>R$ 49</strong>/mês
+                <small>template + domínio + hospedagem</small>
               </div>
-              <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Tenho%20interesse%20no%20template%20Sal%C3%A3o%20de%20Beleza." class="template-buy" target="_blank">Quero esse</a>
+              <a href="templates/salao.html#planos" class="template-buy">Ver Planos</a>
             </div>
           </div>
         </div>
@@ -1369,28 +1310,28 @@
       </div>
       <div class="sobre-features fade-in">
         <div class="feature-item">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <div>
             <h4>Tecnologia Moderna</h4>
             <p>Utilizamos as stacks mais atuais do mercado para garantir performance, segurança e escalabilidade.</p>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🤝</div>
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
           <div>
             <h4>Atendimento Próximo</h4>
             <p>Comunicação direta e transparente em cada etapa do projeto. Sem intermediários.</p>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🎯</div>
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div>
             <h4>Foco em Resultados</h4>
             <p>Cada decisão técnica e de design é orientada para gerar valor real para o seu negócio.</p>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🔧</div>
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
           <div>
             <h4>Suporte Contínuo</h4>
             <p>Após a entrega, continuamos acompanhando para garantir que tudo funcione perfeitamente.</p>
