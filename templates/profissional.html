@@ -779,6 +779,185 @@
                 justify-content: center;
             }
         }
+
+        /* ===== PLANOS DE HOSPEDAGEM ===== */
+        .planos-section {
+            padding: 80px 24px;
+            background: #F4F6FA;
+        }
+
+        .planos-section .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .planos-section .section-header h2 {
+            font-size: 36px;
+            color: #1B2A4A;
+            margin-bottom: 12px;
+        }
+
+        .planos-section .section-header p {
+            font-size: 17px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .plano-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            border: 2px solid transparent;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plano-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .plano-card.destaque {
+            border-color: #1B2A4A;
+            transform: scale(1.04);
+            box-shadow: 0 8px 40px rgba(27, 42, 74, 0.15);
+        }
+
+        .plano-card.destaque:hover {
+            transform: scale(1.06);
+        }
+
+        .plano-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1B2A4A;
+            color: #fff;
+            padding: 4px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .plano-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #1B2A4A;
+            margin-bottom: 4px;
+        }
+
+        .plano-periodo {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .plano-preco {
+            margin-bottom: 8px;
+        }
+
+        .plano-preco .valor {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1B2A4A;
+        }
+
+        .plano-preco .valor small {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .plano-total {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 24px;
+        }
+
+        .plano-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 28px 0;
+        }
+
+        .plano-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 0;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .plano-features li::before {
+            content: "\2713";
+            color: #1B2A4A;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .plano-btn {
+            display: block;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .plano-card .plano-btn {
+            background: #fff;
+            color: #1B2A4A;
+            border: 2px solid #1B2A4A;
+        }
+
+        .plano-card .plano-btn:hover {
+            background: #1B2A4A;
+            color: #fff;
+        }
+
+        .plano-card.destaque .plano-btn {
+            background: #1B2A4A;
+            color: #fff;
+            border: 2px solid #1B2A4A;
+        }
+
+        .plano-card.destaque .plano-btn:hover {
+            background: #0f1c33;
+        }
+
+        @media (max-width: 900px) {
+            .planos-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+            }
+
+            .plano-card.destaque {
+                transform: none;
+            }
+
+            .plano-card.destaque:hover {
+                transform: translateY(-4px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -960,6 +1139,64 @@
                         Sim, atendemos clientes em todo o territ&oacute;rio nacional. Com o avan&ccedil;o do processo eletr&ocirc;nico e das ferramentas digitais, podemos acompanhar casos em qualquer comarca do pa&iacute;s. Consultas remotas por videoconfer&ecirc;ncia est&atilde;o dispon&iacute;veis para sua comodidade.
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS DE HOSPEDAGEM -->
+    <section class="planos-section" id="planos">
+        <div class="section-header fade-in">
+            <h2>Leve Seu Site Para o Ar</h2>
+            <p>Escolha o plano ideal: template personalizado + dom&iacute;nio + hospedagem + suporte</p>
+        </div>
+        <div class="planos-grid">
+            <div class="plano-card fade-in">
+                <h3>Essencial</h3>
+                <div class="plano-periodo">1 ano de contrato</div>
+                <div class="plano-preco">
+                    <span class="valor">R$ 89<small>/m&ecirc;s</small></span>
+                </div>
+                <div class="plano-total">R$ 1.068/ano</div>
+                <ul class="plano-features">
+                    <li>Dom&iacute;nio .com.br</li>
+                    <li>Hospedagem com SSL</li>
+                    <li>1 E-mail profissional</li>
+                    <li>Suporte por WhatsApp</li>
+                    <li>Atualiza&ccedil;&otilde;es de seguran&ccedil;a</li>
+                </ul>
+                <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Quero%20contratar%20o%20plano%20Essencial." class="plano-btn" target="_blank">Contratar Essencial</a>
+            </div>
+            <div class="plano-card destaque fade-in">
+                <span class="plano-badge">Mais Popular</span>
+                <h3>Profissional</h3>
+                <div class="plano-periodo">3 anos de contrato</div>
+                <div class="plano-preco">
+                    <span class="valor">R$ 69<small>/m&ecirc;s</small></span>
+                </div>
+                <div class="plano-total">R$ 2.484 (total 3 anos)</div>
+                <ul class="plano-features">
+                    <li>Tudo do Essencial +</li>
+                    <li>3 E-mails profissionais</li>
+                    <li>Manuten&ccedil;&atilde;o mensal inclusa</li>
+                    <li>Suporte priorit&aacute;rio</li>
+                </ul>
+                <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Quero%20contratar%20o%20plano%20Profissional." class="plano-btn" target="_blank">Contratar Profissional</a>
+            </div>
+            <div class="plano-card fade-in">
+                <span class="plano-badge" style="background:#00D4FF;color:#1a1a1a;">Melhor Custo</span>
+                <h3>Premium</h3>
+                <div class="plano-periodo">5 anos de contrato</div>
+                <div class="plano-preco">
+                    <span class="valor">R$ 49<small>/m&ecirc;s</small></span>
+                </div>
+                <div class="plano-total">R$ 2.940 (total 5 anos)</div>
+                <ul class="plano-features">
+                    <li>Tudo do Profissional +</li>
+                    <li>5 E-mails profissionais</li>
+                    <li>Redesign gratuito a cada 2 anos</li>
+                    <li>Suporte VIP 24h</li>
+                </ul>
+                <a href="https://wa.me/5511910599011?text=Ol%C3%A1!%20Quero%20contratar%20o%20plano%20Premium." class="plano-btn" target="_blank">Contratar Premium</a>
             </div>
         </div>
     </section>
