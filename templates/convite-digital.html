@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Template de convite digital para casamento, aniversário e formatura. Countdown, confirmação de presença via WhatsApp. A partir de R$49/mês.">
+    <meta name="keywords" content="convite digital, convite casamento, convite online, RSVP digital, template convite">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="RB Tecnologia">
+    <meta property="og:title" content="Convite Digital | Maria & João">
+    <meta property="og:description" content="Template de convite digital elegante para casamento, aniversário e formatura. Countdown e confirmação via WhatsApp.">
+    <meta property="og:image" content="https://rbtec.tech/assets/screenshots/convite-digital.png">
+    <meta property="og:url" content="https://rbtec.tech/templates/convite-digital.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="RB Tecnologia">
+    <link rel="canonical" href="https://rbtec.tech/templates/convite-digital.html">
+    <title>Convite Digital | Maria &amp; Jo&atilde;o</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dourado: #D4AF37;
+            --dourado-claro: #E8D48B;
+            --branco: #FFFFFF;
+            --preto: #1A1A1A;
+            --rose: #F4E4D4;
+            --rose-claro: #FAF3ED;
+            --rose-escuro: #D4B896;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--preto);
+            background-color: var(--rose-claro);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(212,175,55,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.03) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23D4AF37' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========== BANNER DEMO ========== */
+        .demo-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--dourado);
+            color: var(--preto);
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            line-height: 1.4;
+        }
+
+        .demo-banner a {
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .demo-banner a:hover {
+            opacity: 0.8;
+        }
+
+        /* ========== MAIN CONTAINER ========== */
+        .convite-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== ORNAMENTO TOPO ========== */
+        .ornamento-topo {
+            text-align: center;
+            padding: 20px 0 10px;
+        }
+
+        .ornamento-topo svg {
+            width: 240px;
+            max-width: 70%;
+            height: auto;
+            color: var(--dourado);
+        }
+
+        /* ========== CONVITE PRINCIPAL ========== */
+        .convite-principal {
+            text-align: center;
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 48px 24px;
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .convite-principal::before,
+        .convite-principal::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .convite-principal::before {
+            top: 16px;
+            left: 16px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .convite-principal::after {
+            bottom: 16px;
+            right: 16px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .convite-subtexto {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 16px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .convite-nomes {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 300;
+            color: var(--dourado);
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .convite-nomes .e-symbol {
+            display: block;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--rose-escuro);
+            margin: 4px 0;
+        }
+
+        .convite-linha {
+            width: 60px;
+            height: 1px;
+            background: var(--dourado);
+            margin: 0 auto 24px;
+        }
+
+        .convite-data {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--preto);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .convite-horario {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 16px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .convite-local {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .convite-local strong {
+            display: block;
+            font-weight: 600;
+            color: var(--preto);
+        }
+
+        /* ========== SEPARADOR SVG ========== */
+        .separador {
+            text-align: center;
+            padding: 16px 0;
+        }
+
+        .separador svg {
+            width: 120px;
+            height: auto;
+            color: var(--dourado);
+            opacity: 0.5;
+        }
+
+        /* ========== COUNTDOWN ========== */
+        .countdown-section {
+            text-align: center;
+        }
+
+        .countdown-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 16px 8px;
+            border: 1px solid rgba(212,175,55,0.15);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .countdown-numero {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--dourado);
+            line-height: 1;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* ========== MENSAGEM ========== */
+        .mensagem-section {
+            text-align: center;
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 40px 28px;
+            border: 1px solid rgba(212,175,55,0.15);
+            position: relative;
+        }
+
+        .mensagem-section .aspas-svg {
+            width: 32px;
+            height: auto;
+            color: var(--dourado);
+            opacity: 0.4;
+            margin-bottom: 16px;
+        }
+
+        .mensagem-texto {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #555;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ========== LOCAL / MAPA ========== */
+        .local-section {
+            text-align: center;
+        }
+
+        .local-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--preto);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .local-titulo svg {
+            width: 24px;
+            height: 24px;
+            color: var(--dourado);
+        }
+
+        .mapa-placeholder {
+            width: 100%;
+            height: 200px;
+            background: var(--rose);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212,175,55,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mapa-placeholder svg {
+            width: 48px;
+            height: 48px;
+            color: var(--dourado);
+            opacity: 0.5;
+        }
+
+        .mapa-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, transparent 49.5%, rgba(212,175,55,0.1) 49.5%, rgba(212,175,55,0.1) 50.5%, transparent 50.5%),
+                linear-gradient(0deg, transparent 49.5%, rgba(212,175,55,0.1) 49.5%, rgba(212,175,55,0.1) 50.5%, transparent 50.5%);
+            background-size: 40px 40px;
+        }
+
+        .local-endereco {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .local-endereco strong {
+            display: block;
+            color: var(--preto);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .btn-como-chegar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--branco);
+            color: var(--preto);
+            border: 1px solid var(--dourado);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-como-chegar:hover {
+            background: var(--dourado);
+            color: var(--branco);
+        }
+
+        .btn-como-chegar svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========== DRESS CODE ========== */
+        .dresscode-section {
+            text-align: center;
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 36px 24px;
+            border: 1px solid rgba(212,175,55,0.15);
+        }
+
+        .dresscode-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--dourado);
+            margin-bottom: 16px;
+        }
+
+        .dresscode-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .dresscode-tipo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--preto);
+        }
+
+        /* ========== CONFIRMACAO ========== */
+        .confirmacao-section {
+            text-align: center;
+        }
+
+        .confirmacao-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--preto);
+            margin-bottom: 8px;
+        }
+
+        .confirmacao-sub {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 28px;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--preto);
+            background: var(--branco);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--dourado);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+
+        .btn-confirmar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: var(--dourado);
+            color: var(--branco);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .btn-confirmar:hover {
+            background: #C4A030;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+        }
+
+        .btn-confirmar:active {
+            transform: translateY(0);
+        }
+
+        .btn-confirmar svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            text-align: center;
+            padding: 32px 20px 24px;
+            border-top: 1px solid rgba(212,175,55,0.15);
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .footer a {
+            color: var(--dourado);
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer a:hover {
+            opacity: 0.7;
+        }
+
+        /* ========== ANIMACOES ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .ornamento-topo svg {
+            animation: fadeIn 2s ease forwards;
+        }
+
+        /* ========== RESPONSIVO ========== */
+        @media (max-width: 480px) {
+            .convite-nomes {
+                font-size: 2.6rem;
+            }
+
+            .convite-principal {
+                padding: 36px 20px;
+            }
+
+            .convite-principal::before,
+            .convite-principal::after {
+                width: 50px;
+                height: 50px;
+            }
+
+            .countdown-numero {
+                font-size: 2rem;
+            }
+
+            .countdown-item {
+                padding: 12px 6px;
+            }
+
+            .mensagem-section {
+                padding: 32px 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .convite-nomes {
+                font-size: 2.2rem;
+            }
+
+            .countdown-grid {
+                gap: 8px;
+            }
+
+            .countdown-numero {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER DEMO -->
+    <div class="demo-banner">
+        Este é um template demo da RB Tecnologia | <a href="https://wa.me/5511910599011" target="_blank">Quer seu convite digital? Chama no WhatsApp</a>
+    </div>
+
+    <div class="convite-wrapper">
+
+        <!-- ORNAMENTO TOPO -->
+        <div class="section ornamento-topo">
+            <svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M200 10 C200 10, 160 10, 140 30 C120 50, 130 70, 150 70 C170 70, 175 55, 170 45 C165 35, 155 35, 150 40" stroke="currentColor" stroke-width="1" fill="none"/>
+                <path d="M200 10 C200 10, 240 10, 260 30 C280 50, 270 70, 250 70 C230 70, 225 55, 230 45 C235 35, 245 35, 250 40" stroke="currentColor" stroke-width="1" fill="none"/>
+                <path d="M140 50 C120 50, 80 35, 40 45" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M260 50 C280 50, 320 35, 360 45" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M100 40 C100 40, 90 35, 85 42 C80 49, 90 52, 95 47" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M300 40 C300 40, 310 35, 315 42 C320 49, 310 52, 305 47" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <circle cx="200" cy="10" r="2.5" fill="currentColor" opacity="0.4"/>
+                <path d="M170 75 C180 85, 200 90, 200 90 C200 90, 220 85, 230 75" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- CONVITE PRINCIPAL -->
+        <div class="section convite-principal">
+            <p class="convite-subtexto">Temos a alegria de convidar você para</p>
+            <h1 class="convite-nomes">
+                Maria
+                <span class="e-symbol">&</span>
+                João
+            </h1>
+            <div class="convite-linha"></div>
+            <p class="convite-data">15 de Março de 2026</p>
+            <p class="convite-horario">às 18h00</p>
+            <p class="convite-local">
+                <strong>Espaço Garden</strong>
+                Rua das Flores, 123 — São Paulo, SP
+            </p>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="separador">
+            <svg viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 10 H45 M75 10 H120" stroke="currentColor" stroke-width="0.5"/>
+                <path d="M52 4 C56 4, 60 8, 60 10 C60 12, 56 16, 52 16" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M68 4 C64 4, 60 8, 60 10 C60 12, 64 16, 68 16" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- COUNTDOWN -->
+        <div class="section countdown-section">
+            <p class="countdown-titulo">Faltam poucos dias para o grande dia</p>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span class="countdown-numero" id="cd-dias">00</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-numero" id="cd-horas">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-numero" id="cd-minutos">00</span>
+                    <span class="countdown-label">Min</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-numero" id="cd-segundos">00</span>
+                    <span class="countdown-label">Seg</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="separador">
+            <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 15 Q50 5, 60 15 Q70 25, 80 15" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M25 15 H38 M82 15 H95" stroke="currentColor" stroke-width="0.5"/>
+                <circle cx="60" cy="15" r="1.5" fill="currentColor" opacity="0.3"/>
+            </svg>
+        </div>
+
+        <!-- MENSAGEM -->
+        <div class="section mensagem-section">
+            <svg class="aspas-svg" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 24V14.4C0 5.28 5.76 1.12 12.8 0l1.28 3.2C8.64 4.48 6.72 8 6.4 11.2H12.8V24H0Zm19.2 0V14.4C19.2 5.28 24.96 1.12 32 0l1.28 3.2C27.84 4.48 25.92 8 25.6 11.2H32V24H19.2Z" fill="currentColor"/>
+            </svg>
+            <p class="mensagem-texto">
+                Será uma honra celebrar este momento com você.<br>
+                Sua presença é o nosso maior presente.
+            </p>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="separador">
+            <svg viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 12 H48" stroke="currentColor" stroke-width="0.5"/>
+                <path d="M72 12 H100" stroke="currentColor" stroke-width="0.5"/>
+                <path d="M54 6 L60 12 L54 18 M66 6 L60 12 L66 18" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- LOCAL / MAPA -->
+        <div class="section local-section">
+            <h2 class="local-titulo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+                Local da Celebração
+            </h2>
+            <div class="mapa-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+            </div>
+            <div class="local-endereco">
+                <strong>Espaço Garden</strong>
+                Rua das Flores, 123 — Jardim Primavera<br>
+                São Paulo, SP — CEP 01234-567
+            </div>
+            <a href="https://maps.google.com" target="_blank" class="btn-como-chegar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+                </svg>
+                Como Chegar
+            </a>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="separador">
+            <svg viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 10 H50 M70 10 H110" stroke="currentColor" stroke-width="0.5"/>
+                <circle cx="60" cy="10" r="4" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <circle cx="60" cy="10" r="1.5" fill="currentColor" opacity="0.3"/>
+            </svg>
+        </div>
+
+        <!-- DRESS CODE -->
+        <div class="section dresscode-section">
+            <svg class="dresscode-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Vestido / Traje -->
+                <path d="M18 8 L16 6 L14 8 L14 14 L10 20 L10 40 L22 40 L22 20 L18 14 Z"/>
+                <path d="M30 8 L28 6 L26 8"/>
+                <path d="M26 8 L26 14 L28 16 L28 40 L38 40 L38 16 L36 14 L36 12"/>
+                <path d="M30 8 L36 12"/>
+                <path d="M26 8 L30 12 L36 12"/>
+                <line x1="28" y1="20" x2="38" y2="20"/>
+            </svg>
+            <p class="dresscode-titulo">Dress Code</p>
+            <p class="dresscode-tipo">Esporte Fino</p>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="separador">
+            <svg viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 12 H50" stroke="currentColor" stroke-width="0.5"/>
+                <path d="M70 12 H90" stroke="currentColor" stroke-width="0.5"/>
+                <path d="M55 8 Q60 16, 65 8" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                <path d="M55 16 Q60 8, 65 16" stroke="currentColor" stroke-width="0.8" fill="none"/>
+            </svg>
+        </div>
+
+        <!-- CONFIRMACAO DE PRESENCA -->
+        <div class="section confirmacao-section">
+            <h2 class="confirmacao-titulo">Confirmação de Presença</h2>
+            <p class="confirmacao-sub">Por favor, confirme até 01 de Março de 2026</p>
+
+            <form id="form-rsvp" onsubmit="return enviarConfirmacao(event)">
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="acompanhantes">Número de acompanhantes</label>
+                    <select id="acompanhantes" name="acompanhantes">
+                        <option value="0">Nenhum acompanhante</option>
+                        <option value="1">1 acompanhante</option>
+                        <option value="2">2 acompanhantes</option>
+                        <option value="3">3 acompanhantes</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-confirmar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    Confirmar Presença
+                </button>
+            </form>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Convite Digital por <a href="https://rbtec.tech" target="_blank">RB Tecnologia</a></p>
+        </footer>
+
+    </div>
+
+    <script>
+        // ========== COUNTDOWN ==========
+        (function() {
+            const dataEvento = new Date('2026-03-15T18:00:00').getTime();
+
+            function atualizarCountdown() {
+                const agora = new Date().getTime();
+                const diferenca = dataEvento - agora;
+
+                if (diferenca <= 0) {
+                    document.getElementById('cd-dias').textContent = '00';
+                    document.getElementById('cd-horas').textContent = '00';
+                    document.getElementById('cd-minutos').textContent = '00';
+                    document.getElementById('cd-segundos').textContent = '00';
+                    return;
+                }
+
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-dias').textContent = String(dias).padStart(2, '0');
+                document.getElementById('cd-horas').textContent = String(horas).padStart(2, '0');
+                document.getElementById('cd-minutos').textContent = String(minutos).padStart(2, '0');
+                document.getElementById('cd-segundos').textContent = String(segundos).padStart(2, '0');
+            }
+
+            atualizarCountdown();
+            setInterval(atualizarCountdown, 1000);
+        })();
+
+        // ========== ANIMACOES DE ENTRADA ==========
+        (function() {
+            const sections = document.querySelectorAll('.section');
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            sections.forEach(function(section) {
+                observer.observe(section);
+            });
+        })();
+
+        // ========== CONFIRMACAO VIA WHATSAPP ==========
+        function enviarConfirmacao(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const acompanhantes = document.getElementById('acompanhantes').value;
+
+            if (!nome) {
+                alert('Por favor, preencha seu nome.');
+                return false;
+            }
+
+            let mensagem = 'Olá! Gostaria de confirmar minha presença no casamento de Maria & João.';
+            mensagem += '\n\nNome: ' + nome;
+
+            if (acompanhantes === '0') {
+                mensagem += '\nAcompanhantes: Nenhum';
+            } else {
+                mensagem += '\nAcompanhantes: ' + acompanhantes;
+            }
+
+            const url = 'https://wa.me/5511910599011?text=' + encodeURIComponent(mensagem);
+            window.open(url, '_blank');
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>

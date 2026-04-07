@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nome do Fotografo | Portfolio de Fotografia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FFFFFF;
+      color: #111111;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; line-height: 1.2; font-weight: 500; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ========== FADE-IN ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== DEMO BANNER ========== */
+    .demo-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #111111;
+      color: #C9A96E;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      letter-spacing: 0.5px;
+    }
+    .demo-banner a {
+      color: #FFFFFF;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.3s ease;
+    }
+    .header.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.08); }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #111111;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #888888;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: #111111; }
+    .nav-instagram {
+      display: flex;
+      align-items: center;
+      color: #888888;
+      transition: color 0.3s ease;
+    }
+    .nav-instagram:hover { color: #C9A96E; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #111111;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 24px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .nav-links.active { display: flex; }
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #111111;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 20px 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(201, 169, 110, 0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(201, 169, 110, 0.05) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: #888888;
+      margin-bottom: 40px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1px solid #C9A96E;
+      color: #C9A96E;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: all 0.4s ease;
+    }
+    .btn-primary:hover {
+      background: #C9A96E;
+      color: #111111;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+    }
+
+    /* ========== SECTION SHARED ========== */
+    .section { padding: 100px 0; }
+    .section-dark { background: #111111; color: #FFFFFF; }
+    .section-light { background: #FFFFFF; color: #111111; }
+    .section-offwhite { background: #F8F7F5; color: #111111; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #888888;
+      font-size: 0.9rem;
+      margin-bottom: 60px;
+      font-weight: 300;
+    }
+    .section-dark .section-subtitle { color: #777; }
+    .gold-line {
+      width: 40px;
+      height: 1px;
+      background: #C9A96E;
+      margin: 0 auto 20px;
+    }
+
+    /* ========== PORTFOLIO / GALERIA ========== */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: none;
+      border: 1px solid #DDD;
+      padding: 8px 24px;
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      color: #888888;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: #C9A96E;
+      color: #C9A96E;
+    }
+
+    .gallery-grid {
+      columns: 3;
+      column-gap: 16px;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery-item.hidden {
+      display: none;
+    }
+    .gallery-thumb {
+      width: 100%;
+      aspect-ratio: auto;
+      display: block;
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+    .gallery-item:hover .gallery-thumb {
+      transform: scale(1.03);
+      filter: brightness(0.85);
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-grid { columns: 2; }
+    }
+    @media (max-width: 768px) {
+      .gallery-grid { columns: 1; max-width: 500px; margin: 0 auto; }
+    }
+
+    /* ========== LIGHTBOX ========== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+      padding: 12px;
+    }
+    .lightbox-nav:hover { opacity: 1; }
+    .lightbox-prev { left: -60px; }
+    .lightbox-next { right: -60px; }
+
+    @media (max-width: 768px) {
+      .lightbox { padding: 20px; }
+      .lightbox-prev { left: -10px; }
+      .lightbox-next { right: -10px; }
+      .lightbox-close { top: -40px; }
+    }
+
+    /* ========== SOBRE ========== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-photo {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #C9A96E 0%, #888888 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .about-text p {
+      color: #666;
+      margin-bottom: 16px;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #EEE;
+    }
+    .about-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #C9A96E;
+      display: block;
+    }
+    .about-stat-label {
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .about-equipment {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .equip-tag {
+      padding: 6px 14px;
+      border: 1px solid #DDD;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #888;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .about-photo { width: 220px; height: 220px; }
+      .about-stats { justify-content: center; }
+    }
+
+    /* ========== SERVICOS ========== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 40px 28px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border-radius: 4px;
+    }
+    .service-card:hover {
+      border-color: #C9A96E;
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      margin-bottom: 24px;
+      color: #C9A96E;
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .service-card p {
+      color: #777;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #C9A96E;
+    }
+    .service-price small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: #666;
+      display: block;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    }
+
+    /* ========== DEPOIMENTOS ========== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .testimonial-card {
+      background: #FFFFFF;
+      border: 1px solid #EEE;
+      padding: 36px;
+      border-radius: 4px;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      color: #C9A96E;
+    }
+    .testimonial-card blockquote {
+      font-size: 0.92rem;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .testimonial-author {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #111;
+    }
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: #999;
+    }
+
+    @media (max-width: 1024px) {
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    }
+
+    /* ========== INSTAGRAM FEED ========== */
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .insta-item {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .insta-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .insta-item:hover .insta-thumb { transform: scale(1.05); }
+    .insta-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s ease;
+    }
+    .insta-item:hover::after { background: rgba(0,0,0,0.2); }
+    .insta-cta {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .insta-cta a {
+      color: #C9A96E;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .insta-cta a:hover { color: #111; }
+
+    @media (max-width: 768px) {
+      .insta-grid { grid-template-columns: repeat(2, 1fr); max-width: 400px; }
+    }
+
+    /* ========== CTA FINAL ========== */
+    .cta-final {
+      padding: 120px 20px;
+      text-align: center;
+      background: #111111;
+      color: #FFFFFF;
+      position: relative;
+    }
+    .cta-final h2 {
+      font-size: 2.8rem;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .cta-final p {
+      color: #777;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: #25D366;
+      color: #FFFFFF;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .btn-whatsapp:hover { background: #1EBE5A; transform: translateY(-2px); }
+
+    @media (max-width: 768px) {
+      .cta-final { padding: 80px 20px; }
+      .cta-final h2 { font-size: 1.8rem; }
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 40px 0;
+      background: #0A0A0A;
+      color: #555;
+      text-align: center;
+    }
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .footer-socials a {
+      color: #555;
+      transition: color 0.3s ease;
+    }
+    .footer-socials a:hover { color: #C9A96E; }
+    .footer p { font-size: 0.78rem; letter-spacing: 1px; }
+
+    /* ========== WHATSAPP FLUTUANTE ========== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <span>Este e um template demo da RB Tecnologia</span>
+    <span>|</span>
+    <span>Quer seu portfolio?</span>
+    <a href="https://wa.me/5511910599011" target="_blank">Chama no WhatsApp</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Nome do Fotografo</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Servicos</a>
+        <a href="#contato">Contato</a>
+        <a href="#" class="nav-instagram" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content fade-in">
+      <p class="hero-label">Fotografia Autoral</p>
+      <h1>Capturando Momentos Eternos</h1>
+      <p>Cada imagem conta uma historia. Transformo instantes em memorias que duram para sempre, com um olhar sensivel e atencao aos detalhes.</p>
+      <a href="#portfolio" class="btn-primary">Ver Portfolio</a>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section section-light" id="portfolio">
+    <div class="container">
+      <div class="gold-line fade-in"></div>
+      <h2 class="section-title fade-in">Portfolio</h2>
+      <p class="section-subtitle fade-in">Uma selecao dos meus trabalhos favoritos</p>
+
+      <div class="filter-bar fade-in">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="casamentos">Casamentos</button>
+        <button class="filter-btn" data-filter="ensaios">Ensaios</button>
+        <button class="filter-btn" data-filter="eventos">Eventos</button>
+        <button class="filter-btn" data-filter="natureza">Natureza</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- 12 placeholders com gradientes variados -->
+        <div class="gallery-item" data-category="casamentos" onclick="openLightbox(0)">
+          <div class="gallery-thumb" style="height:380px;background:linear-gradient(135deg,#2C1810,#5C3A28,#C9A96E);"></div>
+          <div class="gallery-overlay"><span>Casamentos</span></div>
+        </div>
+        <div class="gallery-item" data-category="ensaios" onclick="openLightbox(1)">
+          <div class="gallery-thumb" style="height:280px;background:linear-gradient(135deg,#1A1A2E,#16213E,#0F3460);"></div>
+          <div class="gallery-overlay"><span>Ensaios</span></div>
+        </div>
+        <div class="gallery-item" data-category="natureza" onclick="openLightbox(2)">
+          <div class="gallery-thumb" style="height:340px;background:linear-gradient(135deg,#1B4332,#2D6A4F,#52B788);"></div>
+          <div class="gallery-overlay"><span>Natureza</span></div>
+        </div>
+        <div class="gallery-item" data-category="eventos" onclick="openLightbox(3)">
+          <div class="gallery-thumb" style="height:300px;background:linear-gradient(135deg,#1A1A1A,#333333,#555555);"></div>
+          <div class="gallery-overlay"><span>Eventos</span></div>
+        </div>
+        <div class="gallery-item" data-category="casamentos" onclick="openLightbox(4)">
+          <div class="gallery-thumb" style="height:360px;background:linear-gradient(135deg,#3D2B1F,#8B6F47,#D4A574);"></div>
+          <div class="gallery-overlay"><span>Casamentos</span></div>
+        </div>
+        <div class="gallery-item" data-category="ensaios" onclick="openLightbox(5)">
+          <div class="gallery-thumb" style="height:260px;background:linear-gradient(135deg,#2B2D42,#5C5C8A,#8D99AE);"></div>
+          <div class="gallery-overlay"><span>Ensaios</span></div>
+        </div>
+        <div class="gallery-item" data-category="natureza" onclick="openLightbox(6)">
+          <div class="gallery-thumb" style="height:320px;background:linear-gradient(135deg,#004E64,#00A5CF,#9FFFCB);"></div>
+          <div class="gallery-overlay"><span>Natureza</span></div>
+        </div>
+        <div class="gallery-item" data-category="eventos" onclick="openLightbox(7)">
+          <div class="gallery-thumb" style="height:350px;background:linear-gradient(135deg,#0D1B2A,#1B263B,#415A77);"></div>
+          <div class="gallery-overlay"><span>Eventos</span></div>
+        </div>
+        <div class="gallery-item" data-category="casamentos" onclick="openLightbox(8)">
+          <div class="gallery-thumb" style="height:290px;background:linear-gradient(135deg,#4A1942,#893168,#C9A96E);"></div>
+          <div class="gallery-overlay"><span>Casamentos</span></div>
+        </div>
+        <div class="gallery-item" data-category="ensaios" onclick="openLightbox(9)">
+          <div class="gallery-thumb" style="height:370px;background:linear-gradient(135deg,#212529,#495057,#ADB5BD);"></div>
+          <div class="gallery-overlay"><span>Ensaios</span></div>
+        </div>
+        <div class="gallery-item" data-category="natureza" onclick="openLightbox(10)">
+          <div class="gallery-thumb" style="height:310px;background:linear-gradient(135deg,#0B3D25,#145A38,#8FBC8B);"></div>
+          <div class="gallery-overlay"><span>Natureza</span></div>
+        </div>
+        <div class="gallery-item" data-category="eventos" onclick="openLightbox(11)">
+          <div class="gallery-thumb" style="height:330px;background:linear-gradient(135deg,#1C1C1C,#C9A96E,#3A3A3A);"></div>
+          <div class="gallery-overlay"><span>Eventos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fechar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)" aria-label="Anterior">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="lightbox-img" id="lightboxImg" style="width:80vw;max-width:800px;height:60vh;border-radius:4px;"></div>
+      <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)" aria-label="Proximo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <section class="section section-offwhite" id="sobre">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div class="about-photo">Sua Foto</div>
+        <div class="about-text">
+          <h2>Sobre Mim</h2>
+          <p>Sou fotografo profissional ha mais de 10 anos, apaixonado por contar historias atraves de imagens. Cada projeto e unico, e meu objetivo e capturar a essencia de cada momento com autenticidade e sensibilidade.</p>
+          <p>Especializado em casamentos, ensaios e eventos corporativos, trago um olhar autoral que transforma instantes em arte. Trabalho com equipamentos de ponta para garantir a mais alta qualidade em cada clique.</p>
+          <div class="about-equipment">
+            <span class="equip-tag">Canon R5</span>
+            <span class="equip-tag">Sony A7IV</span>
+            <span class="equip-tag">Profoto B10</span>
+            <span class="equip-tag">DJI Mini 4</span>
+          </div>
+          <div class="about-stats">
+            <div>
+              <span class="about-stat-number">10+</span>
+              <span class="about-stat-label">Anos de experiencia</span>
+            </div>
+            <div>
+              <span class="about-stat-number">500+</span>
+              <span class="about-stat-label">Projetos realizados</span>
+            </div>
+            <div>
+              <span class="about-stat-number">50k+</span>
+              <span class="about-stat-label">Fotos entregues</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICOS -->
+  <section class="section section-dark" id="servicos">
+    <div class="container">
+      <div class="gold-line fade-in"></div>
+      <h2 class="section-title fade-in">Servicos</h2>
+      <p class="section-subtitle fade-in">Pacotes personalizados para cada momento</p>
+
+      <div class="services-grid fade-in">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Casamento</h3>
+          <p>Cobertura completa do grande dia, do making-of a festa. Inclui album digital e fotos tratadas.</p>
+          <div class="service-price">
+            R$ 3.500
+            <small>a partir de</small>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3>Ensaio</h3>
+          <p>Ensaio fotografico individual, casal ou familia em locacao ou estudio. 40 fotos tratadas.</p>
+          <div class="service-price">
+            R$ 800
+            <small>a partir de</small>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Evento Corporativo</h3>
+          <p>Cobertura profissional para congressos, lancamentos e confraternizacoes empresariais.</p>
+          <div class="service-price">
+            R$ 2.000
+            <small>a partir de</small>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 15a6 6 0 0 1-8 0"/><path d="M20 21c0-3-3.6-6-8-6s-8 3-8 6"/></svg>
+          </div>
+          <h3>Ensaio Newborn</h3>
+          <p>Sessao delicada e cuidadosa para registrar os primeiros dias do seu bebe com todo carinho.</p>
+          <div class="service-price">
+            R$ 1.200
+            <small>a partir de</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="gold-line fade-in"></div>
+      <h2 class="section-title fade-in">Depoimentos</h2>
+      <p class="section-subtitle fade-in">O que dizem os meus clientes</p>
+
+      <div class="testimonials-grid fade-in">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+          </div>
+          <blockquote>"As fotos do nosso casamento ficaram absolutamente perfeitas. Cada detalhe foi capturado com muito cuidado e sensibilidade. Recomendo de olhos fechados!"</blockquote>
+          <p class="testimonial-author">Ana & Pedro</p>
+          <p class="testimonial-role">Casamento em Ilhabela</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+          </div>
+          <blockquote>"Fizemos um ensaio de familia e o resultado superou todas as expectativas. Profissional incrivel, pontual e muito atencioso com as criancas."</blockquote>
+          <p class="testimonial-author">Mariana Silva</p>
+          <p class="testimonial-role">Ensaio Familia</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+          </div>
+          <blockquote>"Contratamos para nosso evento corporativo e o resultado foi impecavel. As fotos transmitiram exatamente a energia que queriamos. Trabalho de excelencia."</blockquote>
+          <p class="testimonial-author">Ricardo Mendes</p>
+          <p class="testimonial-role">Evento Corporativo - TechCorp</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM FEED -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="gold-line fade-in"></div>
+      <h2 class="section-title fade-in">Instagram</h2>
+      <p class="section-subtitle fade-in">Acompanhe meu trabalho nas redes</p>
+
+      <div class="insta-grid fade-in">
+        <div class="insta-item">
+          <div class="insta-thumb" style="background:linear-gradient(135deg,#2C1810,#C9A96E);"></div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-thumb" style="background:linear-gradient(135deg,#1A1A2E,#415A77);"></div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-thumb" style="background:linear-gradient(135deg,#1B4332,#52B788);"></div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-thumb" style="background:linear-gradient(135deg,#3D2B1F,#D4A574);"></div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-thumb" style="background:linear-gradient(135deg,#212529,#ADB5BD);"></div>
+        </div>
+        <div class="insta-item">
+          <div class="insta-thumb" style="background:linear-gradient(135deg,#0D1B2A,#C9A96E);"></div>
+        </div>
+      </div>
+      <p class="insta-cta fade-in">Siga no Instagram <a href="#" target="_blank">@nomefotografo</a></p>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="contato">
+    <div class="container fade-in">
+      <div class="gold-line"></div>
+      <h2>Vamos criar algo incrivel juntos</h2>
+      <p>Entre em contato e vamos conversar sobre o seu projeto</p>
+      <a href="https://wa.me/5511910599011" target="_blank" class="btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Fale no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Pinterest">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.182-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.808-2.425.853 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.5 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.282a.3.3 0 0 1 .069.288l-.278 1.133c-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        </a>
+      </div>
+      <p>&copy; 2026 Nome do Fotografo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLUTUANTE -->
+  <a href="https://wa.me/5511910599011" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    /* ========== HAMBURGER MENU ========== */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    // Fechar menu ao clicar em link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    /* ========== HEADER SCROLL ========== */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    /* ========== FILTROS DE GALERIA ========== */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        galleryItems.forEach(item => {
+          if (filter === 'todos' || item.dataset.category === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    /* ========== LIGHTBOX ========== */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    let currentIndex = 0;
+
+    function getVisibleItems() {
+      return Array.from(galleryItems).filter(item => !item.classList.contains('hidden'));
+    }
+
+    function openLightbox(index) {
+      const visible = getVisibleItems();
+      const allItems = Array.from(galleryItems);
+      // Encontrar o indice dentro dos visiveis
+      const clickedItem = allItems[index];
+      currentIndex = visible.indexOf(clickedItem);
+      if (currentIndex === -1) currentIndex = 0;
+      updateLightboxContent();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(direction) {
+      const visible = getVisibleItems();
+      currentIndex = (currentIndex + direction + visible.length) % visible.length;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const visible = getVisibleItems();
+      if (visible[currentIndex]) {
+        const thumb = visible[currentIndex].querySelector('.gallery-thumb');
+        const bg = thumb.style.background;
+        lightboxImg.style.background = bg;
+      }
+    }
+
+    // Fechar lightbox com ESC
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // Fechar lightbox clicando no fundo
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    /* ========== FADE-IN (IntersectionObserver) ========== */
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
