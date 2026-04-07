@@ -885,6 +885,93 @@
       .templates-grid { grid-template-columns: 1fr; }
     }
 
+    /* ===== PLANOS ===== */
+    .planos-section {
+      padding: 100px 0;
+      background: var(--bg-primary);
+    }
+    .planos-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .plano-tab {
+      padding: 12px 28px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .plano-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .plano-tab.active {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+    .planos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .plano-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .plano-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.3); }
+    .plano-destaque {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    }
+    .plano-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 4px 16px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .plano-header { text-align: center; margin-bottom: 20px; }
+    .plano-header h3 { font-size: 1.4rem; color: var(--white); margin-bottom: 4px; }
+    .plano-periodo { color: var(--text-secondary); font-size: 0.9rem; }
+    .plano-preco { text-align: center; margin-bottom: 28px; }
+    .preco-valor { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--accent); }
+    .preco-periodo { color: var(--text-secondary); font-size: 1rem; }
+    .plano-features { list-style: none; margin-bottom: 28px; }
+    .plano-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .plano-features li:last-child { border-bottom: none; }
+
+    @media (max-width: 900px) {
+      .planos-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .plano-tab { padding: 10px 20px; font-size: 0.9rem; }
+    }
+
     /* ===== SOBRE ===== */
     .sobre {
       padding: 100px 0;
@@ -1380,6 +1467,7 @@
         <a href="#inicio">Início</a>
         <a href="#servicos">Serviços</a>
         <a href="#templates">Templates</a>
+        <a href="#planos">Planos</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
         <a href="blog/index.html">Blog</a>
@@ -1397,6 +1485,7 @@
     <a href="#inicio">Início</a>
     <a href="#servicos">Serviços</a>
     <a href="#templates">Templates</a>
+    <a href="#planos">Planos</a>
     <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
     <a href="blog/index.html">Blog</a>
@@ -1558,6 +1647,208 @@
     </div>
   </section>
 
+  <!-- PLANOS E PREÇOS -->
+  <section class="planos-section" id="planos">
+    <div class="container">
+      <div class="fade-in" style="text-align:center;">
+        <div class="accent-line" style="margin: 0 auto 24px;"></div>
+        <h2 class="section-title" style="color: var(--white);">Planos e Preços</h2>
+        <p class="section-subtitle" style="margin: 0 auto 16px;">Todos os planos incluem domínio próprio, hospedagem com SSL, suporte via WhatsApp e atualizações.</p>
+      </div>
+
+      <!-- Tabs de produto -->
+      <div class="planos-tabs fade-in">
+        <button class="plano-tab active" data-product="sites">Sites Profissionais</button>
+        <button class="plano-tab" data-product="cardapio">Cardápio Digital</button>
+        <button class="plano-tab" data-product="linkbio">Link in Bio</button>
+      </div>
+
+      <!-- Sites Profissionais -->
+      <div class="planos-grid fade-in" id="planos-sites">
+        <div class="plano-card">
+          <div class="plano-header">
+            <h3>Essencial</h3>
+            <p class="plano-periodo">1 ano</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 89</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Template responsivo</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Domínio próprio (.com.br)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Hospedagem com SSL</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Personalização de cores e imagens</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp integrado</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Suporte por WhatsApp</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20plano%20Essencial%20de%20Sites!" class="btn btn-outline" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+
+        <div class="plano-card plano-destaque">
+          <div class="plano-badge">Mais Popular</div>
+          <div class="plano-header">
+            <h3>Profissional</h3>
+            <p class="plano-periodo">3 anos</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 69</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Essencial</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> SEO otimizado</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Google Analytics integrado</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Chatbot no site</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 2 revisões de conteúdo/mês</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Suporte prioritário</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20plano%20Profissional%20de%20Sites!" class="btn btn-accent" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-header">
+            <h3>Premium</h3>
+            <p class="plano-periodo">5 anos</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 49</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Profissional</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Melhor custo-benefício</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Revisões ilimitadas</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Suporte 24h</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Relatórios mensais</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Prioridade em novos recursos</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20plano%20Premium%20de%20Sites!" class="btn btn-outline" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+      </div>
+
+      <!-- Cardápio Digital -->
+      <div class="planos-grid fade-in" id="planos-cardapio" style="display:none;">
+        <div class="plano-card">
+          <div class="plano-header">
+            <h3>Essencial</h3>
+            <p class="plano-periodo">1 ano</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 49</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Cardápio digital responsivo</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> QR Code personalizado</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Domínio próprio</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Categorias e busca</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pedido via WhatsApp</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 1 atualização de cardápio/mês</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20Cardápio%20Digital%20Essencial!" class="btn btn-outline" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+
+        <div class="plano-card plano-destaque">
+          <div class="plano-badge">Mais Popular</div>
+          <div class="plano-header">
+            <h3>Profissional</h3>
+            <p class="plano-periodo">3 anos</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 39</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Essencial</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Fotos dos pratos</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tags (Vegano, Sem Glúten, etc.)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 3 atualizações de cardápio/mês</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Analytics de acessos</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Suporte prioritário</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20Cardápio%20Digital%20Profissional!" class="btn btn-accent" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-header">
+            <h3>Premium</h3>
+            <p class="plano-periodo">5 anos</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 29</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Profissional</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Melhor custo-benefício</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Atualizações ilimitadas</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Suporte 24h</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Cardápio sazonal</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> QR Code para mesa individual</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20Cardápio%20Digital%20Premium!" class="btn btn-outline" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+      </div>
+
+      <!-- Link in Bio -->
+      <div class="planos-grid fade-in" id="planos-linkbio" style="display:none;">
+        <div class="plano-card">
+          <div class="plano-header">
+            <h3>Essencial</h3>
+            <p class="plano-periodo">1 ano</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 29</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Página de links personalizada</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Domínio próprio</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Até 8 links</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Foto de perfil e bio</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ícones de redes sociais</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Design responsivo</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20Link%20in%20Bio%20Essencial!" class="btn btn-outline" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+
+        <div class="plano-card plano-destaque">
+          <div class="plano-badge">Mais Popular</div>
+          <div class="plano-header">
+            <h3>Profissional</h3>
+            <p class="plano-periodo">3 anos</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 19</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Essencial</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Links ilimitados</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Banner de destaque</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Animações premium</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Analytics de cliques</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 2 alterações/mês</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20Link%20in%20Bio%20Profissional!" class="btn btn-accent" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-header">
+            <h3>Premium</h3>
+            <p class="plano-periodo">5 anos</p>
+          </div>
+          <div class="plano-preco">
+            <span class="preco-valor">R$ 14,90</span><span class="preco-periodo">/mês</span>
+          </div>
+          <ul class="plano-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Profissional</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Melhor custo-benefício</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Alterações ilimitadas</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Temas sazonais</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Suporte 24h</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pixel de rastreamento</li>
+          </ul>
+          <a href="https://wa.me/5511910599011?text=Quero%20o%20Link%20in%20Bio%20Premium!" class="btn btn-outline" target="_blank" style="width:100%;text-align:center;">Contratar</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- SOBRE -->
   <section class="sobre" id="sobre">
     <div class="container">
@@ -1706,6 +1997,18 @@
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         mobileNav.classList.remove('active');
+      });
+    });
+
+    // Planos tabs
+    document.querySelectorAll('.plano-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.plano-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const product = tab.dataset.product;
+        document.getElementById('planos-sites').style.display = product === 'sites' ? 'grid' : 'none';
+        document.getElementById('planos-cardapio').style.display = product === 'cardapio' ? 'grid' : 'none';
+        document.getElementById('planos-linkbio').style.display = product === 'linkbio' ? 'grid' : 'none';
       });
     });
 
