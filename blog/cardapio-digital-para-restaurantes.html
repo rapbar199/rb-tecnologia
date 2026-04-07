@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-26TKCFZ4G6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-26TKCFZ4G6');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardapio Digital para Restaurantes: Como Funciona e Por Que Ter Um | Blog RB Tecnologia</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Descubra como funciona um cardapio digital para restaurantes, as vantagens sobre o cardapio impresso, QR Code, economia e higiene. Guia completo para donos de restaurantes.">
+  <meta name="keywords" content="cardapio digital, menu digital, QR code restaurante, cardapio online, cardapio digital restaurante, menu QR code">
+  <meta name="author" content="RB Tecnologia">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://rbtec.tech/blog/cardapio-digital-para-restaurantes.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rbtec.tech/blog/cardapio-digital-para-restaurantes.html">
+  <meta property="og:title" content="Cardapio Digital para Restaurantes: Como Funciona e Por Que Ter Um | RB Tecnologia">
+  <meta property="og:description" content="Guia completo sobre cardapio digital para restaurantes. Vantagens, QR Code, economia e como implementar no seu estabelecimento.">
+  <meta property="og:image" content="https://rbtec.tech/assets/og-image.png">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="RB Tecnologia">
+  <meta property="article:published_time" content="2026-04-07">
+  <meta property="article:author" content="RB Tecnologia">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cardapio Digital para Restaurantes: Como Funciona e Por Que Ter Um">
+  <meta name="twitter:description" content="Guia completo sobre cardapio digital para restaurantes.">
+  <meta name="twitter:image" content="https://rbtec.tech/assets/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cardapio Digital para Restaurantes: Como Funciona e Por Que Ter Um",
+    "description": "Guia completo sobre cardapio digital para restaurantes. Vantagens, QR Code, economia e como implementar no seu estabelecimento.",
+    "datePublished": "2026-04-07",
+    "dateModified": "2026-04-07",
+    "author": {
+      "@type": "Organization",
+      "name": "RB Tecnologia",
+      "url": "https://rbtec.tech"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RB Tecnologia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rbtec.tech/assets/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://rbtec.tech/blog/cardapio-digital-para-restaurantes.html"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-dark: #0A1628;
+      --bg-darker: #060F1F;
+      --bg-card: #111D33;
+      --bg-card-hover: #162440;
+      --primary: #1B2A4A;
+      --accent: #00D4FF;
+      --accent-glow: rgba(0, 212, 255, 0.15);
+      --accent-secondary: #0088CC;
+      --white: #FFFFFF;
+      --gray-light: #F0F4F8;
+      --text: #E0E0E0;
+      --text-muted: #8899AA;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --max-width: 1200px;
+      --transition: 0.3s ease;
+      --border-subtle: rgba(0, 212, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--bg-dark);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 0;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-img { height: 36px; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 100px 0 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .breadcrumb a:hover { opacity: 0.8; }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* ARTICLE */
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .article-meta .tag {
+      background: var(--accent-glow);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .article-container h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .article-container h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 48px 0 16px;
+      padding-left: 16px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .article-container h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin: 32px 0 12px;
+    }
+
+    .article-container p {
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .article-container ul,
+    .article-container ol {
+      margin: 0 0 20px 24px;
+      color: var(--text);
+    }
+
+    .article-container li {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .article-container strong {
+      color: var(--white);
+    }
+
+    .highlight-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      color: var(--text);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #0D2137 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .cta-section h2 {
+      border: none;
+      padding-left: 0;
+      text-align: center;
+      margin: 0 0 16px;
+      font-size: 1.6rem;
+    }
+
+    .cta-section p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg-darker);
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 8px; }
+
+    .footer ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+
+    .footer ul a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding: 20px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .cta-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo-link">
+        <img src="../assets/logo.png" alt="RB Tecnologia" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../index.html#servicos">Servicos</a>
+        <a href="../index.html#templates">Templates</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="index.html">Blog</a>
+        <span>/</span>
+        Cardapio Digital para Restaurantes
+      </div>
+    </div>
+
+    <article class="article-container">
+      <div class="article-meta">
+        <span class="tag">Gastronomia Digital</span>
+        <span>7 de Abril de 2026</span>
+        <span>10 min de leitura</span>
+      </div>
+
+      <h1>Cardapio Digital para Restaurantes: Como Funciona e Por Que Ter Um</h1>
+
+      <p>O cardapio digital deixou de ser uma tendencia passageira e se tornou uma necessidade real para restaurantes, bares, lanchonetes e cafeterias em todo o Brasil. Se voce ainda utiliza apenas o cardapio impresso no seu estabelecimento, este artigo vai mostrar por que a mudanca para o formato digital pode transformar a experiencia dos seus clientes e a gestao do seu negocio.</p>
+
+      <p>Com a popularizacao dos smartphones e a mudanca de habitos dos consumidores -- especialmente apos a pandemia de COVID-19 --, o cardapio digital via QR Code se consolidou como a solucao mais pratica, higienica e economica para apresentar seus produtos e precos.</p>
+
+      <h2>O Que e um Cardapio Digital?</h2>
+
+      <p>Um cardapio digital e uma versao online do menu do seu restaurante, acessivel por meio de um link ou QR Code. Em vez de entregar um cardapio fisico ao cliente, ele simplesmente aponta a camera do celular para o codigo impresso na mesa, no balcao ou na vitrine, e acessa instantaneamente todos os itens disponiveis, com precos, descricoes e fotos.</p>
+
+      <p>Diferente de um simples PDF enviado por WhatsApp, um cardapio digital profissional e uma pagina web responsiva, otimizada para celulares, que carrega rapidamente e oferece uma navegacao intuitiva. Ele pode incluir categorias organizadas (entradas, pratos principais, sobremesas, bebidas), fotos de alta qualidade, informacoes sobre ingredientes e ate opcoes de personalizacao.</p>
+
+      <h2>Como Funciona o QR Code no Restaurante</h2>
+
+      <p>O funcionamento e extremamente simples, tanto para o restaurante quanto para o cliente:</p>
+
+      <ol>
+        <li><strong>Criacao do cardapio:</strong> O restaurante cria sua pagina de cardapio digital com todos os itens, categorias, precos e fotos.</li>
+        <li><strong>Geracao do QR Code:</strong> Um QR Code unico e gerado, apontando diretamente para o link do cardapio.</li>
+        <li><strong>Impressao e posicionamento:</strong> O QR Code e impresso em adesivos, displays de mesa, placas no balcao ou ate na fachada do estabelecimento.</li>
+        <li><strong>Acesso pelo cliente:</strong> O cliente abre a camera do celular, escaneia o codigo e visualiza o cardapio completo no navegador, sem precisar baixar nenhum aplicativo.</li>
+      </ol>
+
+      <p>Todo o processo leva menos de cinco segundos. O cliente nao precisa instalar nada, nao precisa criar conta e nao precisa esperar um garcom trazer o menu. A experiencia e imediata e sem friccao.</p>
+
+      <h2>Vantagens do Cardapio Digital vs Cardapio Impresso</h2>
+
+      <p>A transicao do cardapio impresso para o digital traz beneficios concretos em diversas areas do negocio. Veja as principais vantagens:</p>
+
+      <h3>Economia Real e Mensuravel</h3>
+
+      <p>Cardapios impressos precisam ser refeitos toda vez que um prato muda de preco, um item sai do menu ou uma novidade e adicionada. Dependendo da quantidade de mesas e da frequencia de alteracoes, os custos de impressao podem facilmente ultrapassar R$ 500 a R$ 2.000 por ano.</p>
+
+      <p>Com o cardapio digital, qualquer alteracao e feita instantaneamente no sistema, sem custo adicional. Mudou o preco da picanha? Atualiza em dois minutos e todos os clientes ja veem o novo valor. Acabou determinado prato? Remove temporariamente e reativa quando voltar ao estoque.</p>
+
+      <h3>Higiene e Seguranca Alimentar</h3>
+
+      <p>Apos a pandemia, a higiene se tornou uma preocupacao central dos consumidores. O cardapio impresso passa de mao em mao dezenas de vezes ao dia. Mesmo com limpeza constante, e impossivel garantir que esta higienizado entre cada uso.</p>
+
+      <p>O cardapio digital elimina completamente esse problema. Cada cliente acessa o menu no proprio celular, sem contato compartilhado. Isso transmite uma imagem de cuidado e modernidade que os clientes valorizam.</p>
+
+      <h3>Atualizacao Instantanea</h3>
+
+      <p>Imagine a seguinte situacao: voce recebeu uma remessa especial de frutos do mar e quer criar um prato do dia. Com o cardapio impresso, seria necessario imprimir novas versoes ou colar adesivos improvisados. Com o digital, voce adiciona o prato em minutos, com foto, descricao e preco, e ele ja aparece para todos os clientes.</p>
+
+      <p>Essa agilidade tambem e util para ajustar precos sazonais, criar combos promocionais, destacar pratos mais lucrativos ou remover itens que estao em falta.</p>
+
+      <h3>Melhor Apresentacao Visual</h3>
+
+      <p>Um cardapio digital permite incluir fotos profissionais dos pratos, algo que no impresso elevaria drasticamente os custos de producao. Estudos mostram que pratos com fotos vendem ate 30% mais do que pratos listados apenas com texto. A apresentacao visual estimula o apetite e ajuda o cliente a decidir mais rapidamente.</p>
+
+      <h3>Acessibilidade e Inclusao</h3>
+
+      <p>O cardapio digital pode ser traduzido para outros idiomas facilmente, atendendo turistas e estrangeiros. Alem disso, o formato digital permite que clientes com deficiencia visual utilizem recursos de acessibilidade do proprio celular, como aumento de fonte e leitores de tela.</p>
+
+      <h2>Dados e Inteligencia para o Seu Negocio</h2>
+
+      <p>Outra vantagem frequentemente ignorada e a capacidade de coletar dados. Com um cardapio digital, voce pode acompanhar:</p>
+
+      <ul>
+        <li><strong>Quais pratos sao mais visualizados:</strong> Identifique os itens que despertam mais interesse e posicione-os estrategicamente.</li>
+        <li><strong>Horarios de pico:</strong> Saiba quando o cardapio e mais acessado e prepare sua equipe adequadamente.</li>
+        <li><strong>Tempo medio de navegacao:</strong> Entenda se os clientes encontram facilmente o que procuram ou se o cardapio precisa ser reorganizado.</li>
+        <li><strong>Itens ignorados:</strong> Descubra quais pratos raramente sao visualizados e considere remove-los ou reposiciona-los.</li>
+      </ul>
+
+      <p>Esses dados ajudam a tomar decisoes baseadas em evidencias, e nao apenas em intuicao, otimizando seu menu para maximizar o faturamento.</p>
+
+      <h2>Sustentabilidade e Responsabilidade Ambiental</h2>
+
+      <p>A reducao do uso de papel e tinta e um beneficio ambiental direto. Restaurantes que adotam o cardapio digital reduzem significativamente seu consumo de recursos naturais e a geracao de residuos. Em um cenario onde consumidores valorizam cada vez mais marcas sustentaveis, esse posicionamento pode ser um diferencial competitivo.</p>
+
+      <div class="highlight-box">
+        <p><strong>Voce sabia?</strong> Um restaurante com 20 mesas que reimprime seus cardapios a cada dois meses consome, em media, mais de 2.000 folhas de papel por ano. Com o cardapio digital, esse numero cai para zero.</p>
+      </div>
+
+      <h2>Como Implementar um Cardapio Digital no Seu Restaurante</h2>
+
+      <p>A implementacao e mais simples do que parece. Veja o passo a passo recomendado:</p>
+
+      <ol>
+        <li><strong>Organize seus itens:</strong> Liste todos os pratos, bebidas e sobremesas com precos atualizados, descricoes e categorias.</li>
+        <li><strong>Fotografe os pratos:</strong> Fotos de boa qualidade fazem toda a diferenca. Use luz natural e fundos limpos.</li>
+        <li><strong>Escolha uma plataforma:</strong> Opte por uma solucao que ofereça pagina responsiva, QR Code incluso e facilidade de edicao.</li>
+        <li><strong>Gere e imprima os QR Codes:</strong> Posicione em cada mesa, no balcao e na entrada do restaurante.</li>
+        <li><strong>Treine sua equipe:</strong> Garanta que garcons e atendentes saibam orientar clientes sobre como acessar o cardapio.</li>
+        <li><strong>Divulgue nas redes sociais:</strong> Compartilhe o link do cardapio no Instagram, Facebook e Google Meu Negocio.</li>
+      </ol>
+
+      <h2>Erros Comuns ao Criar um Cardapio Digital</h2>
+
+      <p>Mesmo sendo uma ferramenta simples, alguns erros podem comprometer a experiencia do cliente:</p>
+
+      <ul>
+        <li><strong>PDF nao responsivo:</strong> Enviar um PDF do cardapio impresso nao e um cardapio digital. PDFs sao dificeis de ler no celular e passam uma imagem amadora.</li>
+        <li><strong>Fotos de baixa qualidade:</strong> Fotos escuras, desfocadas ou mal enquadradas prejudicam mais do que ajudam. Melhor nao ter foto do que ter uma foto ruim.</li>
+        <li><strong>Falta de organizacao:</strong> Itens misturados sem categorias claras confundem o cliente e aumentam o tempo de decisao.</li>
+        <li><strong>Precos desatualizados:</strong> Nada frustra mais o cliente do que descobrir no momento de pagar que o preco mudou. Mantenha o cardapio sempre atualizado.</li>
+        <li><strong>QR Code mal posicionado:</strong> O codigo precisa estar visivel e acessivel. Evite locais com pouca iluminacao ou angulos dificeis.</li>
+      </ul>
+
+      <h2>Cardapio Digital e Delivery</h2>
+
+      <p>O cardapio digital nao serve apenas para clientes presenciais. Ele tambem pode ser compartilhado via WhatsApp, Instagram e Google, funcionando como uma vitrine online permanente do seu restaurante. Clientes que querem pedir delivery podem consultar o cardapio completo antes de ligar ou enviar mensagem, agilizando o atendimento e reduzindo erros nos pedidos.</p>
+
+      <p>Alem disso, o link do cardapio pode ser adicionado ao perfil do Google Meu Negocio, ao Instagram Bio e a qualquer material de divulgacao, ampliando o alcance do seu restaurante sem custos adicionais de publicidade.</p>
+
+      <h2>Quanto Custa um Cardapio Digital?</h2>
+
+      <p>Os custos variam bastante dependendo da solucao escolhida. Plataformas simples cobram entre R$ 30 e R$ 100 por mes. Solucoes mais robustas, com sistema de pedidos integrado, podem custar de R$ 150 a R$ 500 por mes.</p>
+
+      <p>No entanto, existem opcoes muito mais acessiveis. A RB Tecnologia oferece cardapios digitais profissionais com design moderno, QR Code incluso, pagina responsiva e atualizacao facil por um valor que cabe no orcamento de qualquer restaurante.</p>
+
+      <div class="cta-section">
+        <h2>Tenha Seu Cardapio Digital Profissional</h2>
+        <p>A RB Tecnologia cria cardapios digitais modernos, responsivos e faceis de atualizar para o seu restaurante. QR Code incluso, sem mensalidades abusivas.</p>
+        <div class="cta-buttons">
+          <a href="../index.html#templates" class="btn-primary">Ver Cardapio Digital</a>
+          <a href="https://wa.me/5511910599011?text=Oi!%20Quero%20saber%20mais%20sobre%20o%20cardapio%20digital." class="btn-secondary" target="_blank">Falar no WhatsApp</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/logo.png" alt="RB Tecnologia" class="logo-img" style="height:32px;">
+          <p>Transformando ideias em solucoes digitais. Desenvolvimento de sites, aplicativos e sistemas personalizados para o seu negocio.</p>
+        </div>
+        <div>
+          <h4>Navegacao</h4>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.html#servicos">Servicos</a></li>
+            <li><a href="../index.html#templates">Templates</a></li>
+            <li><a href="index.html">Blog</a></li>
+            <li><a href="../index.html#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="https://wa.me/5511910599011" target="_blank">(11) 91059-9011</a></li>
+            <li><a href="https://wa.me/5511910599011" target="_blank">Atendimento via WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RB Tecnologia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

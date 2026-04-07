@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-26TKCFZ4G6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-26TKCFZ4G6');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site para Advogados: Por Que Todo Escritorio Precisa de Um | Blog RB Tecnologia</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Descubra por que todo advogado e escritorio de advocacia precisa de um site profissional. Regras da OAB, SEO local, elementos essenciais e como criar o seu.">
+  <meta name="keywords" content="site para advogado, site escritorio advocacia, marketing juridico, presenca digital advogado, site advogado OAB">
+  <meta name="author" content="RB Tecnologia">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://rbtec.tech/blog/site-para-advogados.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rbtec.tech/blog/site-para-advogados.html">
+  <meta property="og:title" content="Site para Advogados: Por Que Todo Escritorio Precisa de Um | RB Tecnologia">
+  <meta property="og:description" content="Guia completo sobre sites para advogados. Importancia da presenca digital, regras da OAB, SEO local e elementos essenciais.">
+  <meta property="og:image" content="https://rbtec.tech/assets/og-image.png">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="RB Tecnologia">
+  <meta property="article:published_time" content="2026-04-07">
+  <meta property="article:author" content="RB Tecnologia">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Site para Advogados: Por Que Todo Escritorio Precisa de Um">
+  <meta name="twitter:description" content="Guia completo sobre sites para advogados e escritorios de advocacia.">
+  <meta name="twitter:image" content="https://rbtec.tech/assets/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Site para Advogados: Por Que Todo Escritorio Precisa de Um",
+    "description": "Guia completo sobre sites para advogados. Importancia da presenca digital, regras da OAB, SEO local e elementos essenciais.",
+    "datePublished": "2026-04-07",
+    "dateModified": "2026-04-07",
+    "author": {
+      "@type": "Organization",
+      "name": "RB Tecnologia",
+      "url": "https://rbtec.tech"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RB Tecnologia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rbtec.tech/assets/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://rbtec.tech/blog/site-para-advogados.html"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-dark: #0A1628;
+      --bg-darker: #060F1F;
+      --bg-card: #111D33;
+      --bg-card-hover: #162440;
+      --primary: #1B2A4A;
+      --accent: #00D4FF;
+      --accent-glow: rgba(0, 212, 255, 0.15);
+      --accent-secondary: #0088CC;
+      --white: #FFFFFF;
+      --gray-light: #F0F4F8;
+      --text: #E0E0E0;
+      --text-muted: #8899AA;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --max-width: 1200px;
+      --transition: 0.3s ease;
+      --border-subtle: rgba(0, 212, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--bg-dark);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 0;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-img { height: 36px; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .breadcrumb {
+      padding: 100px 0 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .breadcrumb a:hover { opacity: 0.8; }
+    .breadcrumb span { margin: 0 8px; }
+
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .article-meta .tag {
+      background: var(--accent-glow);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .article-container h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .article-container h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 48px 0 16px;
+      padding-left: 16px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .article-container h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin: 32px 0 12px;
+    }
+
+    .article-container p {
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .article-container ul,
+    .article-container ol {
+      margin: 0 0 20px 24px;
+      color: var(--text);
+    }
+
+    .article-container li {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .article-container strong {
+      color: var(--white);
+    }
+
+    .highlight-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      color: var(--text);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #0D2137 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .cta-section h2 {
+      border: none;
+      padding-left: 0;
+      text-align: center;
+      margin: 0 0 16px;
+      font-size: 1.6rem;
+    }
+
+    .cta-section p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      background: var(--bg-darker);
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 8px; }
+
+    .footer ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+
+    .footer ul a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding: 20px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .cta-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo-link">
+        <img src="../assets/logo.png" alt="RB Tecnologia" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../index.html#servicos">Servicos</a>
+        <a href="../index.html#templates">Templates</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="index.html">Blog</a>
+        <span>/</span>
+        Site para Advogados
+      </div>
+    </div>
+
+    <article class="article-container">
+      <div class="article-meta">
+        <span class="tag">Nicho Profissional</span>
+        <span>7 de Abril de 2026</span>
+        <span>11 min de leitura</span>
+      </div>
+
+      <h1>Site para Advogados: Por Que Todo Escritorio Precisa de Um</h1>
+
+      <p>A advocacia e uma das profissoes mais tradicionais do Brasil, mas o mercado juridico mudou drasticamente nos ultimos anos. Hoje, a maioria das pessoas que precisa de um advogado comeca sua busca no Google. Se o seu escritorio nao tem presenca digital, voce esta invisivel para uma parcela enorme de potenciais clientes que poderiam contratar seus servicos.</p>
+
+      <p>Neste artigo, vamos abordar por que todo advogado e escritorio de advocacia precisa de um site profissional, quais sao as regras da OAB sobre marketing juridico, os elementos essenciais que um site de advogado deve ter, como o SEO local pode trazer clientes da sua regiao e como comecar sem complicacao.</p>
+
+      <h2>A Importancia da Presenca Digital para Advogados</h2>
+
+      <p>O comportamento do consumidor de servicos juridicos mudou radicalmente. Antigamente, a contratacao de um advogado acontecia quase exclusivamente por indicacao pessoal. Embora a indicacao continue sendo importante, a grande maioria dos potenciais clientes pesquisa na internet antes de tomar uma decisao.</p>
+
+      <p>Quando alguem busca "advogado trabalhista em Sao Paulo" ou "escritorio de advocacia familiar" no Google, os resultados mostram sites de advogados e escritorios que investiram em presenca digital. Se voce nao aparece nesses resultados, outro profissional esta recebendo o cliente que poderia ser seu.</p>
+
+      <h3>Credibilidade e Primeira Impressao</h3>
+
+      <p>O site e o cartao de visitas digital do advogado. Antes de ligar ou agendar uma consulta, o potencial cliente vai pesquisar sobre voce. Ele vai procurar seu nome no Google, verificar suas areas de atuacao, ler sobre sua experiencia e formar uma opiniao sobre sua competencia profissional.</p>
+
+      <p>Um site profissional, com design moderno, conteudo bem escrito e informacoes claras, transmite seriedade, competencia e confianca. Por outro lado, a ausencia de um site -- ou pior, um site desatualizado e amador -- pode gerar desconfianca e afastar potenciais clientes.</p>
+
+      <h3>Disponibilidade 24 Horas</h3>
+
+      <p>Seu escritorio funciona em horario comercial, mas seu site trabalha por voce 24 horas por dia, 7 dias por semana. Um potencial cliente pode encontrar seu site as 23h de um sabado, ler sobre suas areas de atuacao, verificar seus diferenciais e enviar uma mensagem de contato. Na segunda-feira, voce ja tem um lead qualificado esperando na sua caixa de entrada.</p>
+
+      <h3>Diferenciacao da Concorrencia</h3>
+
+      <p>O Brasil possui mais de 1,3 milhao de advogados inscritos na OAB. A concorrencia e intensa, especialmente nas grandes cidades. Um site profissional e bem posicionado no Google diferencia voce dos milhares de colegas que ainda dependem exclusivamente de indicacoes e redes sociais para atrair clientes.</p>
+
+      <h2>OAB e Marketing Juridico: O Que Pode e O Que Nao Pode</h2>
+
+      <p>Uma preocupacao legítima dos advogados e o respeito as normas eticas da profissao. O Codigo de Etica e Disciplina da OAB e o Provimento 205/2021 do Conselho Federal da OAB estabelecem diretrizes claras sobre publicidade na advocacia. Conhecer essas regras e fundamental para criar um site em conformidade.</p>
+
+      <h3>O Que E Permitido</h3>
+
+      <ul>
+        <li><strong>Site institucional:</strong> Ter um site com informacoes sobre o escritorio, areas de atuacao, equipe e contato e plenamente permitido e incentivado.</li>
+        <li><strong>Conteudo informativo:</strong> Publicar artigos e textos educativos sobre temas juridicos e permitido, desde que tenham carater informativo e nao configurem captacao de clientela.</li>
+        <li><strong>Redes sociais:</strong> Manter perfis em redes sociais com conteudo informativo e de utilidade publica e permitido.</li>
+        <li><strong>SEO e Google Meu Negocio:</strong> Otimizar o site para buscadores e manter um perfil no Google Meu Negocio e permitido.</li>
+        <li><strong>E-mail marketing:</strong> Enviar newsletters informativas para contatos que optaram por receber e permitido.</li>
+        <li><strong>Identificacao profissional:</strong> Incluir nome, numero da OAB, areas de atuacao e dados de contato no site.</li>
+      </ul>
+
+      <h3>O Que Nao E Permitido</h3>
+
+      <ul>
+        <li><strong>Captacao de clientela:</strong> Abordagem direta de potenciais clientes com oferta de servicos, incluindo anuncios invasivos com linguagem comercial agressiva.</li>
+        <li><strong>Promessas de resultado:</strong> O site nao pode garantir resultados em processos ou prometer ganhos financeiros especificos.</li>
+        <li><strong>Mercantilizacao:</strong> Divulgar precos de honorarios ou tratar servicos juridicos como produtos comerciais.</li>
+        <li><strong>Depoimentos de clientes:</strong> Usar depoimentos de clientes para promover os servicos do escritorio e vedado pela OAB.</li>
+        <li><strong>Publicidade ostensiva:</strong> Anuncios em estilo comercial que descaracterizem a sobriedade da profissao.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p><strong>Importante:</strong> O Provimento 205/2021 modernizou significativamente as regras de publicidade na advocacia, permitindo o uso de marketing de conteudo e presenca digital de forma mais ampla. O foco deve ser sempre no carater informativo e educativo, evitando abordagens puramente comerciais.</p>
+      </div>
+
+      <h2>Elementos Essenciais de um Site para Advogados</h2>
+
+      <p>Um site de advocacia eficiente deve conter os seguintes elementos, organizados de forma clara e profissional:</p>
+
+      <h3>Pagina Inicial Impactante</h3>
+
+      <p>A pagina inicial e a primeira impressao do seu escritorio. Ela deve comunicar imediatamente quem voce e, quais areas do direito atende e como o visitante pode entrar em contato. Use uma headline clara que posicione o escritorio e transmita confianca. Evite jargoes juridicos excessivos -- o visitante pode nao ser da area.</p>
+
+      <h3>Areas de Atuacao Detalhadas</h3>
+
+      <p>Dedique paginas ou secoes especificas para cada area do direito em que voce atua: direito trabalhista, familiar, empresarial, tributario, previdenciario, imobiliario, entre outros. Descreva de forma clara e acessivel quais tipos de demandas voce atende em cada area. Isso ajuda o visitante a entender se voce pode resolver o problema dele e tambem melhora significativamente o SEO do site.</p>
+
+      <h3>Sobre o Escritorio e Equipe</h3>
+
+      <p>Apresente a historia do escritorio, sua missao, valores e diferenciais. Inclua fotos profissionais dos advogados com breve curriculo, formacao academica, numero da OAB e especializacoes. Esse elemento humaniza o escritorio e cria conexao com o visitante.</p>
+
+      <h3>Blog com Conteudo Informativo</h3>
+
+      <p>Um blog com artigos sobre temas juridicos relevantes e uma das estrategias mais eficientes para atrair trafego organico. Quando alguem pesquisa "quais sao meus direitos na demissao sem justa causa", um artigo do seu blog pode aparecer nos resultados do Google. Esse visitante, que chegou ao seu site por uma duvida juridica, pode se tornar um cliente.</p>
+
+      <h3>Formulario de Contato e WhatsApp</h3>
+
+      <p>Facilite ao maximo o contato. Inclua um formulario simples (nome, telefone, breve descricao do caso) e um botao de WhatsApp visivel em todas as paginas. Muitos potenciais clientes preferem o WhatsApp pela praticidade e rapidez. Certifique-se de que o tempo de resposta seja rapido -- a primeira impressao no atendimento e decisiva.</p>
+
+      <h3>Localizacao e Mapa</h3>
+
+      <p>Inclua o endereco completo do escritorio com mapa interativo do Google Maps. Isso e especialmente importante para o SEO local e para facilitar a visita de clientes que preferem consultas presenciais.</p>
+
+      <h2>SEO Local: Como Atrair Clientes da Sua Regiao</h2>
+
+      <p>O SEO local e a estrategia mais importante para advogados que atendem clientes de uma cidade ou regiao especifica. Quando alguem pesquisa "advogado criminalista em Campinas", o Google prioriza resultados de profissionais que atuam nessa cidade. Veja como otimizar seu site para buscas locais:</p>
+
+      <h3>Google Meu Negocio</h3>
+
+      <p>Crie e otimize seu perfil no Google Meu Negocio (agora chamado Google Business Profile). Inclua fotos do escritorio, horario de funcionamento, areas de atuacao e mantenha o perfil atualizado. Esse perfil aparece em destaque nas buscas locais e no Google Maps, gerando visibilidade gratuita e altamente qualificada.</p>
+
+      <h3>Palavras-chave Locais</h3>
+
+      <p>Inclua no conteudo do site referencias a sua cidade e regiao de atuacao. Em vez de apenas "advogado trabalhista", use "advogado trabalhista em Sao Paulo" ou "escritorio de advocacia trabalhista na zona sul de SP". Essa especificidade geografica ajuda o Google a entender onde voce atua e a exibir seu site para buscas relevantes na sua regiao.</p>
+
+      <h3>Conteudo Local Relevante</h3>
+
+      <p>Publique artigos no blog que abordem questoes juridicas especificas da sua regiao. Decisoes de tribunais locais, mudancas na legislacao municipal ou estadual e eventos juridicos da cidade sao otimos temas que atraem trafego local qualificado.</p>
+
+      <h3>Consistencia de Informacoes</h3>
+
+      <p>Certifique-se de que o nome do escritorio, endereco e telefone (NAP - Name, Address, Phone) sejam identicos em todas as plataformas: site, Google Meu Negocio, OAB, redes sociais e diretorios online. Inconsistencias confundem o Google e prejudicam o posicionamento nas buscas locais.</p>
+
+      <h2>Erros Comuns em Sites de Advogados</h2>
+
+      <p>Alguns equivocos podem comprometer a eficacia do site e ate gerar problemas com a OAB:</p>
+
+      <ul>
+        <li><strong>Linguagem inacessivel:</strong> Usar termos juridicos complexos que o leigo nao entende afasta potenciais clientes. Escreva de forma clara e acessivel.</li>
+        <li><strong>Design desatualizado:</strong> Um site com visual de 2010 transmite desatualizacao. Invista em um design moderno que reflita profissionalismo.</li>
+        <li><strong>Falta de responsividade:</strong> Se o site nao funciona bem no celular, voce perde a maioria dos visitantes.</li>
+        <li><strong>Sem formulario de contato:</strong> Dificultar o contato e perder clientes. O visitante deve conseguir falar com voce em poucos cliques.</li>
+        <li><strong>Promessas de resultado:</strong> Alem de ser proibido pela OAB, promessas irrealistas destroem a credibilidade.</li>
+        <li><strong>Site estatico e abandonado:</strong> Um site sem atualizacoes ha meses transmite a ideia de um escritorio inativo. Mantenha o conteudo atualizado.</li>
+        <li><strong>Ignorar o SEO:</strong> Ter um site sem otimizacao para buscadores e como ter um escritorio em uma rua sem placa. Ninguem encontra.</li>
+      </ul>
+
+      <h2>Quanto Custa um Site para Advogados</h2>
+
+      <p>Os custos variam conforme a complexidade e o profissional contratado. Agencias especializadas em marketing juridico cobram entre R$ 3.000 e R$ 15.000 pelo desenvolvimento, mais mensalidades para manutencao e SEO. Freelancers cobram entre R$ 1.500 e R$ 5.000, dependendo do escopo.</p>
+
+      <p>Para advogados que querem comecar com uma solucao profissional, acessivel e rapida, templates prontos especializados para escritorios de advocacia sao a melhor opcao. Eles ja vem com a estrutura ideal, design profissional e otimizacao para SEO, por um valor muito menor do que um projeto sob medida.</p>
+
+      <p>A RB Tecnologia oferece templates profissionais para advogados com design moderno, responsivo e em conformidade com as diretrizes da OAB. Inclui hospedagem, dominio, suporte e todas as paginas essenciais para um escritorio de advocacia.</p>
+
+      <div class="cta-section">
+        <h2>Tenha Seu Site Profissional de Advocacia</h2>
+        <p>A RB Tecnologia cria sites profissionais para advogados e escritorios de advocacia, com design moderno, SEO otimizado e em conformidade com a OAB.</p>
+        <div class="cta-buttons">
+          <a href="../index.html#templates" class="btn-primary">Ver Templates</a>
+          <a href="https://wa.me/5511910599011?text=Oi!%20Quero%20saber%20mais%20sobre%20site%20para%20advogados." class="btn-secondary" target="_blank">Falar no WhatsApp</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/logo.png" alt="RB Tecnologia" class="logo-img" style="height:32px;">
+          <p>Transformando ideias em solucoes digitais. Desenvolvimento de sites, aplicativos e sistemas personalizados para o seu negocio.</p>
+        </div>
+        <div>
+          <h4>Navegacao</h4>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.html#servicos">Servicos</a></li>
+            <li><a href="../index.html#templates">Templates</a></li>
+            <li><a href="index.html">Blog</a></li>
+            <li><a href="../index.html#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="https://wa.me/5511910599011" target="_blank">(11) 91059-9011</a></li>
+            <li><a href="https://wa.me/5511910599011" target="_blank">Atendimento via WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RB Tecnologia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
